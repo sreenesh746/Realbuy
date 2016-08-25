@@ -1,0 +1,53 @@
+<div id="home">
+    <div ng-controller="HomeCtrl" id="home_carousel">
+        <carousel interval="myInterval">
+            <slide ng-repeat="slide in slides" active="slide.active">
+                <img ng-src="{{slide.image}}">
+                <div class="carousel-caption" align="left">
+                    <div id="carousel_info">
+                        <img src="Images/Location_carousel.png" id="carousel_location_icon">
+                        <div id="carousel_title">{{slide.title}}</div>
+                        <div id="carousel_price">{{slide.price}}</div>
+
+                        <img src="Images/Area.png" id="carousel_area_icon">
+                        <div id="carousel_area_title">Area</div>
+                        <div id="carousel_area">{{slide.area}}</div>
+
+                        <img src="Images/bathroom.png" id="carousel_bedroom_icon">
+                        <div id="carousel_bedroom_title">Bedrooms</div>
+                        <div id="carousel_bedroom">{{slide.bedroom}}</div>
+
+                        <img src="Images/bathroom.png" id="carousel_bathroom_icon">
+                        <div id="carousel_bathroom_title">Bathrooms</div>
+                        <div id="carousel_bathroom">{{slide.bathroom}}</div>
+                    </div>
+                </div>
+            </slide>
+        </carousel>
+    </div>
+</div>
+<div id="about-us">
+    <div id="abouttitle">
+        <span id="about">About</span>
+        <span id="us">Us</span>
+        <div id="aboutus_desc">
+            <p>Realbuy is a real estate firm with a vision to create luxurious living spaces that surpass the expectations of customers. Although recently launched the firm is driven with an instinct and far stretching insight that improves the real estate offerings in the city. Realbuy is a well-known name in creating the high-quality residential projects in Kochi region. With years of experience, the company has earned a good reputation in providing quality construction along with its dedicated team. It is a diversified group with significant .</p>
+            <p>Realbuy has built a remarkable name and has established itself as one of the well known entities in the real estate arena. Providing help and assistance to the clients regarding realty issues along with offering useful and effective real estate solutions, stems out as the company's main motto sinc.</p>
+        </div>
+        <div id="aboutus_info">
+            <div id="aboutus_location_details">
+                <img src="Images/Location_Aboutus.png" id="aboutus_location_icon">
+                <div id="aboutus_address_title">Address</div>
+                <div id="aboutus_address"> 9A, 9th floor, Carnival Infopark, Kakkanad, Kochi - 682 030</div>
+            </div>
+            <div id="aboutus_phone_details">
+                <img src="Images/phone_Aboutus.png" id="aboutus_phone_icon">
+                <div id="aboutus_phone_title">Phone</div>
+                <div id="aboutus_phone"> 0484-2415010 </div>
+            </div>
+            <div id="about_us_contact">
+                <button id="aboutus_contactus">CONTACT NOW</button>
+            </div>
+        </div>
+    </div>
+</div>

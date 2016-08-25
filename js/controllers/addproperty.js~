@@ -1,0 +1,35 @@
+app.controller('addPropertyCtrl', ['$scope', 'Upload', function ($scope, Upload) {
+    $scope.property= {
+        saleType: '',
+        type: '',
+        city: '',
+        lat : 10.0158685,
+        lng : 76.3418586,
+        address: '',
+        name: '',
+        price: '',
+        bathroom: '',
+        bedroom: '',
+        builtUpArea: '',
+        builtUpUnit: '',
+        carpetArea: '',
+        carpetUnit: '',
+        transactionType: '',
+        floor: '',
+        totalFloors: '',
+        ownership: '',
+        availability: '',
+        desc: '',
+    };
+    $scope.picFile;
+    $scope.uploadPic = function(file) {
+        $scope.picFile=file;
+        console.log($scope.picFile);
+        //console.log($scope.property);
+          
+    };
+    $scope.validateForm= function() {
+      console.log($scope.picFile);
+      console.log($scope.property);  
+    };
+}]);
