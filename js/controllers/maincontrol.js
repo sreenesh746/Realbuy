@@ -1,19 +1,118 @@
-app.controller('mainCtrl', ['$scope','$rootScope','$window','$http','$localStorage','Upload', function ($scope,$rootScope, $window,$http,$localStorage,Upload){
-    $scope.fetchAll=function()
-    {
+app.controller('mainCtrl', ['$scope','$rootScope','$location','$window','$http','$localStorage','Upload', function ($scope,$rootScope, $location,$window,$http,$localStorage,Upload){
+    $rootScope.$on("refreshProperties", function(){
+           $scope.fetchAll();
+    });
+    $scope.fetchAll=function() {
             var req = {
             method: 'GET',
+            headers : {'Authorization': $localStorage.JWT},
             url: 'http://localhost:9000/realbuyapi'
         };
         $http(req).then(function(res){
             console.log(res);
             if(res.status==200) {
                 //$window.alert('Successfully REtreived');
+               
                 $scope.Properties = res.data.data;
+                $scope.favourites = $scope.Properties.favourites;
+                delete $scope.Properties.favourites;
+                if($localStorage.JWT){
+                    angular.forEach($scope.Properties,function(propertyCategory,key){
+                      angular.forEach(propertyCategory,function(property,key){
+                           if($scope.favourites.indexOf(property._id)!==-1){
+                               property.favourite=true;
+                           } 
+                           else {
+                                property.favourite=false;
+                            }
+                        });  
+                    }); 
+                }
                 console.log($scope.Properties);
+                $scope.featuredActivePage=0;
             }
         });  
-    }
+    };
+    
+    $scope.prevPage=function(){
+        $scope.featuredActivePage--;
+        $scope.gotoPage($scope.featuredActivePage);
+    };
+    
+    $scope.nextPage=function(){
+        $scope.featuredActivePage++;
+        $scope.gotoPage($scope.featuredActivePage);
+    };
+    
+    $scope.gotoPage=function(page){
+        var req = {
+            method: 'GET',
+            headers : {'Authorization': $localStorage.JWT},
+            url: 'http://localhost:9000/realbuyapi/featured',
+            params : {page: page}
+        };
+        $http(req).then(function(res){
+            console.log(res);
+            if(res.status==200) {
+                if(res.data.data.length>0){
+                    $scope.endFeaturedPage = false;
+                    $scope.Properties.featured=res.data.data;
+                    if($localStorage.JWT){
+                        angular.forEach($scope.Properties.featured,function(property,key){
+                            if($scope.favourites.indexOf(property._id)!==-1){
+                                property.favourite=true;
+                            } 
+                            else {
+                                property.favourite=false;
+                            }
+                        });  
+                    }
+                }
+                else {
+                    $scope.endFeaturedPage = true;
+                    $scope.featuredActivePage--;
+                }
+            }
+                
+        });
+    };
+    
+    
+    $scope.toggleFavourite=function(selectedProperty){
+      selectedProperty.favourite = !selectedProperty.favourite;
+      angular.forEach($scope.Properties,function(propertyCategory,key){
+        angular.forEach(propertyCategory,function(currentProperty,key){
+            if(currentProperty._id==selectedProperty._id){
+                currentProperty.favourite=selectedProperty.favourite;        
+            }
+        });  
+    });      
+      $scope.updateFavourite(selectedProperty);
+    };
+    
+    $scope.updateFavourite=function(property){
+        var req = {
+            method: 'PUT',
+            url: 'http://localhost:9000/realbuyapi/favourite',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': $localStorage.JWT
+            },
+            data: { 
+                pid: property._id,
+                flag: property.favourite
+            }
+        };
+        $http(req).then(function(res){
+            console.log(res);
+            if(res.status==200){
+                if(property.favourite)
+                    $scope.favourites.push(property._id);
+                else
+                    $scope.favourites.pop(property._id);
+            }
+        });    
+    };
     
     if($localStorage.JWT){
         $scope.loggedIn=true;
@@ -67,6 +166,14 @@ app.controller('mainCtrl', ['$scope','$rootScope','$window','$http','$localStora
     };
     
     $scope.validateLoginForm=function(){
+        /*if($scope.loginForm.$valid){
+            
+        }
+        else {
+        //if form is not valid set $scope.addContact.submitted to true     
+            $scope.loginForm.submitted=true;
+        }*/
+        $scope.loginServerError='';
         console.log($scope.user);
         $scope.login();
     };
@@ -91,14 +198,18 @@ app.controller('mainCtrl', ['$scope','$rootScope','$window','$http','$localStora
                 $scope.toggleLogin();
                  console.log('logged In');
                 console.log($localStorage.JWT);
-                $window.alert('Successfully Logged In');
+                $scope.fetchAll();
+                $window.alert('Successfully Logged In'); 
             }
-        });    
+        },function(res){
+           $scope.loginServerError = res.data.message;
+        });
     };
     
     $scope.logout=function(){
         $scope.loggedIn=false;
         delete $localStorage.JWT;
+        $scope.fetchAll();
     }
     
     $scope.checkLogin=function(){

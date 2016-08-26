@@ -27,8 +27,10 @@
         <span id="add_phot_title" class="add_property_titles">ADD YOUR PROPERTY PHOTOS</span>
     </div>
     <div class="left-label">
-        <label for="property_photo"><img src="Images/photo-camera.png" id="camera_icon"><span>ADD PHOTO</span></label>
-        <input type="file" id="property_photo" ngf-select ng-model="property.photo" name="file" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+        <label for="property_photo"><img src="Images/photo-camera.png" id="camera_icon"><span ng-show="property.fileName==''">ADD PHOTO</span>
+        <span ng-show="property.fileName!=''">CHANGE PHOTO</span></label>
+        <input type="file" id="property_photo" ngf-change="onFileSelect($files)" ngf-select ng-model="property.photo" name="file" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+        <div id="photo_name" ng-show="property.fileName!=''">File Selected : {{property.fileName}}</div>
     </div>
     <div id="property_address_title_container">
         <span id="property_address_title" class="add_property_titles">YOUR PROPERTY ADDRESS</span>

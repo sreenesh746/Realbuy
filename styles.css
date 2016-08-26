@@ -205,7 +205,7 @@ button .close
 #welcome
 {
     margin-left: 10.41%;
-    margin-top: 23.25%;
+    margin-top: 17.25%;
     width: 39.375%;
     font-size: 2.4vw;
     color: rgba(255, 255, 255, 1);
@@ -455,6 +455,7 @@ img
 #about-us
 {
     width:100%;
+    min-height: 350px;
     height: 48%;
     margin-top: 0.5%;
     background-color: rgba(22, 22, 22, 1);
@@ -482,7 +483,7 @@ img
   margin-top: 2.21%;
   width: 100%;
   font-family: Antipasto;
-  font-size: 0.73vw;
+  font-size: 12px;
   color: rgba(255, 255, 255, 1);
   text-align: left;
   padding-right: 3.47%;
@@ -510,16 +511,15 @@ aboutus_info
     display: inline;
     vertical-align: text-top;
     padding-left: 2.268%;
-    font-size: 0.94vw;
+    font-size: 16px;
     color: rgba(255, 255, 255, 1);
     text-align: left;    
 }
 
 #aboutus_address
 {
-    font-size: 0.67vw;
+    font-size: 11px;
     vertical-align: text-top;
-    margin-top: -1.5%;
     padding-left: 5%;
     color: rgba(255, 255, 255, 1);
     text-align: left; 
@@ -528,7 +528,7 @@ aboutus_info
 
 #aboutus_phone_details
 {
-    margin-top: 3.75%;
+    //margin-top: 3.75%;
     width: 100%;
     
 }
@@ -543,7 +543,7 @@ aboutus_info
     display: inline;
     vertical-align: text-top;
     padding-left: 2.268%;
-    font-size: 0.94vw;
+    font-size: 16px;
     color: rgba(255, 255, 255, 1);
     text-align: left;    
 }
@@ -551,9 +551,8 @@ aboutus_info
 
 #aboutus_phone
 {
-    font-size: 0.67vw;
+    font-size: 11px;
     vertical-align: text-top;
-    margin-top: -1.5%;
     padding-left: 5%;
     color: rgba(255, 255, 255, 1);
     text-align: left; 
@@ -572,7 +571,7 @@ aboutus_info
     height: 10%;
     padding:1%;
     width: 14.17%;
-    font-size: 0.83vw;
+    font-size: 12px;
     border: none;
     color: rgba(255, 255, 255, 1);
     background-color: rgba(47, 181, 110, 1);
@@ -580,7 +579,7 @@ aboutus_info
 
 #featured
 {
-  height: 87%;
+  min-height: 87%;
   width: 100%;
   background-color: rgba(22, 22, 22, 1);
   margin-top: 1.03%;
@@ -788,12 +787,11 @@ li
   position: absolute;
   display: block;
   width: 15%;
-  height: 20%;
   left: 47%;
   top: 30%;
   padding-left: 2.38%;
   font-family: Antipasto;
-  font-size: 0.845vw;
+  font-size: 14px;
   color: rgba(184, 184, 184, 1);
   text-align: left;
 }
@@ -803,12 +801,11 @@ li
   position: absolute;
   display: block;
   width: 15%;
-  height: 20%;
   left: 47%;
   top: 50%;
   padding-left: 2.38%;
   font-family: Antipasto;
-  font-size: 0.85%;
+  font-size: 14px;
   color: rgba(255, 255, 255, 1);
   text-align: left;
 }
@@ -827,12 +824,11 @@ li
   position: absolute;
   display: block;
   width: 15%;
-  height: 20%;
   left: 67%;
   top: 30%;
   padding-left: 3.97%;
   font-family: Antipasto;
-  font-size: 0.845vw;
+  font-size: 14px;
   color: rgba(184, 184, 184, 1);
   text-align: left;
 }
@@ -847,7 +843,7 @@ li
   top: 50%;
   padding-left: 3.97%;
   font-family: Antipasto;
-  font-size: 0.85vw;
+  font-size: 14px;
   color: rgba(255, 255, 255, 1);
   text-align: left;
 }
@@ -871,7 +867,7 @@ li
   top: 30%;
   padding-left: 2.69%;
   font-family: Antipasto;
-  font-size: 0.845vw;
+  font-size: 14px;
   color: rgba(184, 184, 184, 1);
   text-align: left;
 }
@@ -886,7 +882,7 @@ li
   top: 50%;
   padding-left: 2.69%;
   font-family: Antipasto;
-  font-size: 0.85vw;
+  font-size: 14px;
   color: rgba(255, 255, 255, 1);
   text-align: left;
 }
@@ -1086,7 +1082,7 @@ li
   width: 33.33%;
   height: 50%;
   padding-right: 1%;
-  padding-bottom: 1%;
+  padding-bottom: 10%;
   float: left;
 }
 
@@ -1166,7 +1162,7 @@ li
 {
   padding-left: 7.64%;
   float: left;
-  width: 75%;
+  width: 85%;
   padding-top: 2%;
   font-size: 0.9375vw;
 }
@@ -1221,7 +1217,7 @@ li
    margin-left:54%;
 }
 
-.recent_menu li
+#recent_menu li
 {
   float: left;
   padding-left: 1.25%;
@@ -1319,6 +1315,11 @@ li
   text-align: right;
 }
 
+.hidden
+{
+    display: hidden;
+}
+
 #add_property_tabs
 {
     margin-left: 33%;
@@ -1346,6 +1347,7 @@ li
 .activeAddPropertyOption
 {
     color: rgba(47, 181, 110, 1);
+    text-decoration: underline;
     cursor: pointer;
 }
 
@@ -1519,6 +1521,12 @@ input[type="radio"]:checked + label span
     background-color: rgba(41, 41, 41, 1);  
 }
 
+#photo_name
+{
+    color: green;
+    font-size: 14px;
+}
+
 #property_photo
 {
   display: none;
@@ -1660,7 +1668,7 @@ input[type="radio"]:checked + label span
 
 #add_builtup_unit
 {
-    width: 15%;
+    width: 17%;
 }
 
 #add_carpet_area
@@ -1673,7 +1681,7 @@ input[type="radio"]:checked + label span
 
 #add_carpet_unit
 {
-    width: 15%;
+    width: 17%;
 }
 
 #transaction_type_title_container
@@ -1776,6 +1784,6 @@ input[type="radio"]:checked + label span
 .error_message
 {
   color: red;
-  font-size: 12px;
+  font-size: 14px;
   padding-left: 10px;
 }

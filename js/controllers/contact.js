@@ -3,6 +3,10 @@ app.controller('contactCtrl', function($scope,NgMap,$http, $window,$localStorage
     NgMap.getMap().then(function(map) {
         console.log(map.getCenter())
     });
+     $scope.customIcon = {
+        "scaledSize": [29, 37],
+        "url": "Images/Location_white.png"
+    };
     $scope.name='';
     $scope.email='';
     $scope.phone='';

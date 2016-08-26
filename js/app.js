@@ -46,7 +46,7 @@ app.config(function($stateProvider, $urlRouterProvider){
         })
       
         .state('add_basic_info', {
-          url: ('/add-property'),
+          //url: ('/add-property'),
              views: {
       'add_property_ui_view': {
         templateUrl: 'partials/addpropertybasic.html'

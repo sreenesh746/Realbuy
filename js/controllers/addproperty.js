@@ -1,5 +1,5 @@
 'use strict';
-app.controller('addPropertyCtrl', ['$scope','$localStorage','$window', 'Upload', function ($scope,$localStorage, $window, Upload) {
+app.controller('addPropertyCtrl', ['$scope','$rootScope','$localStorage','$window', 'Upload', function ($scope,$rootScope,$localStorage, $window, Upload) {
     $scope.initFirst=function(){
     $scope.property= {
         saleType: '',
@@ -22,16 +22,23 @@ app.controller('addPropertyCtrl', ['$scope','$localStorage','$window', 'Upload',
         ownership: '',
         availability: '',
         description: '',
-        photo: undefined
+        photo: undefined,
+        fileName : ''
     };
     };
     $scope.numbers = ['0','1','2','3','4','5','6','7','8','9','10','10+'];
-    $scope.units = ['Square Feet'];
+    $scope.units = ['Square Feet','Square Meter'];
     $scope.ownerships = ['Freehold', 'Leasehold', 'Co-operative Societies', 'Power of Attorney'];
     $scope.uploadPic = function(file) {
         $scope.property.photo=file;
         console.log($scope.property.photo);
     };
+    
+    $scope.onFileSelect=function(file){
+        $scope.property.fileName = file[0].name;
+        console.log($scope.property.fileName);
+    };
+    
     $scope.validateForm= function() {
       console.log($scope.property); 
       $scope.addProperty();
@@ -74,6 +81,7 @@ app.controller('addPropertyCtrl', ['$scope','$localStorage','$window', 'Upload',
     }).then(function(response){
         if(response.status==200) {
                 $window.alert('Property Added');
+                $rootScope.$emit("refreshProperties", {});
             }
         }, function(response){
           if(response.status==401) {
