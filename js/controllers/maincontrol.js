@@ -212,7 +212,7 @@ app.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$stateParams', '$
                 console.log('logged In');
                 console.log($localStorage.JWT);
                 $scope.fetchAll();
-                showLoginSuccessAlert();
+                //showLoginSuccessAlert();
             }
         }, function(res) {
             $scope.loginServerError = res.data.message;
