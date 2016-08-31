@@ -145,7 +145,7 @@ app.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$stateParams', '$
 
     $scope.signUp = function() {
         Upload.upload({
-            url: 'http://localhost:9000/realbuyapi/signup',
+            url: 'http://10.3.1.187:9000/realbuyapi/signup',
             data: {
                 name: $scope.user.name,
                 email: $scope.user.email,
