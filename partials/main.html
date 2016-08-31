@@ -1,0 +1,571 @@
+<div id="wrapper" data-ng-init="fetchAll()">
+    <!--<div class="alert alert-success" id="login-success" class="success-notify">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success! </strong> You have successfully logged In.
+    </div>
+    <div class="alert alert-success" id="add-property-success" class="success-notify">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success! </strong> You have successfully added a property.
+    </div>-->
+    <div id="leftcontainer">
+        <div id="divlogo">
+            <img src="Images/Logo.png" id="logo">
+        </div>
+        <div id="welcome">
+            Welcome to realbuy
+        </div>
+        <div id="desc">
+            Realbuy is a real estate firm with a vision to create luxurious living spaces that surpass the expectations of customers. Although recently launched the firm is driven with an instinct and far stretching insight that improves the real estate offerings in the city...
+        </div>
+        <div id="search_menu">
+            <button class="searchbuttons" value="SALE" id="salebutton" ng-class="{activeSearchButton:isSetSearchTab('Sell')}" ng-click="setSearchTab('Sell')">SALE</button>
+            <button class="searchbuttons" value="RENT" id="rentbutton" ng-class="{activeSearchButton:isSetSearchTab('Rent')}" ng-click="setSearchTab('Rent')">RENT</button>
+            <button class="searchbuttons" value="READY TO MOVE" id="readybutton" ng-class="{activeSearchButton:isSetSearchTab('Ready To Move')}" ng-click="setSearchTab('Ready To Move')">READY TO MOVE</button>
+            <button class="searchbuttons" value="Under Construction" id="underbutton" ng-class="{activeSearchButton:isSetSearchTab('Under Construction')}" ng-click="setSearchTab('Under Construction')">UNDER CONSTRUCTION</button>
+        </div>
+        <div id="searchtext">
+            <input type="text" id="searchtxt" placeholder="Type Location or Project/Society or Keyword" ng-model="search.keywords">
+            <button id="search" ng-click="searchButtonClick()">SEARCH</button>
+        </div>
+        <div id="footer">
+            <div id="fb">
+                <img src="Images/fb.png">
+            </div>
+            <div id="tw">
+                <img src="Images/twitter.png">
+            </div>
+            <div id="gp">
+                <img src="Images/g+.png">
+            </div>
+            <div id="copyright">
+                &copy; 2016. realbuy.com. All rights reserved.
+            </div>
+        </div>
+    </div>
+    <div id="rightcontainer">
+        <div id="navmenu">
+            <nav id="menu" class="navbar navbar-inverse">
+                <ul class="nav navbar-nav">
+                    <li><a target="_self" href="#home">HOME</a></li>
+                    <li><a target="_self" href="#about-us">ABOUT US</a></li>
+                    <li><a target="_self" href="#featured">FEATURED PROPERTIES</a></li>
+                    <li><a target="_self" href="#recent-properties">RECENT PROPERTIES</a></li>
+                    <li><a target="_self" href="#add-property" ng-click="checkLogin()">ADD PROPERTY</a></li>
+                    <li><a target="_self" href="#contact-us">CONTACT US</a></li>
+                    <li><a target="_self" ng-hide="loggedIn" ng-click="toggleLogin()">LOGIN</a></li>
+                    <li><a target="_self" ng-show="loggedIn" ng-click="logout()">LOGOUT</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div id="holder">
+            <div id="content" data-spy="scroll" data-target=".navbar" data-offset="50">
+                <div id="home">
+                    <div ng-controller="HomeCtrl" id="home_carousel">
+                        <carousel interval="myInterval">
+                            <slide ng-repeat="slide in slides" active="slide.active">
+                                <img ng-src="{{slide.image}}">
+                                <div class="carousel-caption" align="left">
+                                    <div id="carousel_info">
+                                        <img src="Images/Location_carousel.png" id="carousel_location_icon">
+                                        <div id="carousel_title">{{slide.title}}</div>
+                                        <div id="carousel_price">{{slide.price}}</div>
+
+                                        <img src="Images/Area.png" id="carousel_area_icon">
+                                        <div id="carousel_area_title">Area</div>
+                                        <div id="carousel_area">{{slide.area}}</div>
+
+                                        <img src="Images/bathroom.png" id="carousel_bedroom_icon">
+                                        <div id="carousel_bedroom_title">Bedrooms</div>
+                                        <div id="carousel_bedroom">{{slide.bedroom}}</div>
+
+                                        <img src="Images/bathroom.png" id="carousel_bathroom_icon">
+                                        <div id="carousel_bathroom_title">Bathrooms</div>
+                                        <div id="carousel_bathroom">{{slide.bathroom}}</div>
+                                    </div>
+                                </div>
+                            </slide>
+                        </carousel>
+                    </div>
+                </div>
+                <div id="about-us">
+                    <div id="abouttitle">
+                        <span id="about">About</span>
+                        <span id="us">Us</span>
+                        <div id="aboutus_desc">
+                            <p>Realbuy is a real estate firm with a vision to create luxurious living spaces that surpass the expectations of customers. Although recently launched the firm is driven with an instinct and far stretching insight that improves the real estate offerings in the city. Realbuy is a well-known name in creating the high-quality residential projects in Kochi region. With years of experience, the company has earned a good reputation in providing quality construction along with its dedicated team. It is a diversified group with significant .</p>
+                            <p>Realbuy has built a remarkable name and has established itself as one of the well known entities in the real estate arena. Providing help and assistance to the clients regarding realty issues along with offering useful and effective real estate solutions, stems out as the company's main motto sinc.</p>
+                        </div>
+                        <div id="aboutus_info">
+                            <div id="aboutus_location_details">
+                                <img src="Images/Location_Aboutus.png" id="aboutus_location_icon">
+                                <div id="aboutus_address_title">Address</div>
+                                <div id="aboutus_address"> 9A, 9th floor, Carnival Infopark, Kakkanad, Kochi - 682 030</div>
+                            </div>
+                            <div id="aboutus_phone_details">
+                                <img src="Images/phone_Aboutus.png" id="aboutus_phone_icon">
+                                <div id="aboutus_phone_title">Phone</div>
+                                <div id="aboutus_phone"> 0484-2415010</div>
+                            </div>
+                            <div id="about_us_contact">
+                                <button id="aboutus_contactus">CONTACT NOW</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Featured Properties -------->
+                <div id="featured">
+                    <div id="featured-title">
+                        <span id="title-featured">Featured</span><span id="title-properties"> Properties</span>
+                        <div id="pagination">
+                            <button class="page_arrows">
+                                        <img src="Images/Prev_Arrow_Featured.png" ng-hide="featuredActivePage==0" ng-click="prevPage()">
+                                    </button>
+                            <button class="page_arrows">
+                                        <img src="Images/Next_Arrow_Featured.png" ng-hide="endFeaturedPage" ng-click="nextPage()">
+                                    </button>
+                        </div>
+                    </div>
+                    <div id="featured_property_container">
+                        <div class="featured_properties" ng-repeat="property in Properties.featured">
+                            <div id="featured_property_image_holder">
+                                <img ng-src="{{property.photo}}" class="featured_property_image">
+                                <span class="hot_offer">HOT OFFER</span>
+                            </div>
+                            <div class="featured_property_info">
+                                <div id="featured_name">{{property.name}}</div>
+                                <div id="featured_price">&#8377; {{property.price}}</div>
+                                <div id="featured_details">
+                                    <div class="featured_icons">
+                                        <div class="featured_icon_image"><img src="Images/Bed_featured.png" class="featured_icon"></div>
+                                        <div class="featured_icon_title"> Beds</div>
+                                    </div>
+                                    <div class="featured_value">{{property.bedrooms}}</div>
+                                </div>
+                                <div id="featured_details">
+                                    <div class="featured_icons">
+                                        <div class="featured_icon_image"><img src="Images/bath_featured.png" class="featured_icon"></div>
+                                        <div class="featured_icon_title" id="featured_bath_title"> Bathrooms</div>
+                                    </div>
+                                    <div class="featured_value">{{property.bathrooms}}</div>
+                                </div>
+                                <div id="featured_details">
+                                    <div class="featured_icons">
+                                        <div class="featured_icon_image"><img src="Images/map_featured.png" class="featured_icon"></div>
+                                        <div class="featured_icon_title" id="featured_map_title">{{property.address}}</div>
+                                    </div>
+                                    <div class="featured_value">
+                                        <img src="Images/favorites_featured.png" id="fav_icon" ng-hide="property.favourite" ng-click="loggedIn&&toggleFavourite(property)">
+                                        <img src="Images/Fav_select.png" id="fav_icon" ng-show="property.favourite" ng-click="loggedIn&&toggleFavourite(property)">
+                                    </div>
+                                </div>
+                                <span class="featured_sale_type_rent" ng-show="property.saleType=='Rent'">On Rent</span>
+                                <span class="featured_sale_type_sell" ng-show="property.saleType=='Sell'">On Sale</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Properties -------->
+                <div id="recent-properties">
+                    <div class="recent-title">
+                        <span id="title-featured">Recent</span><span id="title-properties"> Properties</span>
+                    </div>
+                    <div id="recent_tabs">
+                        <ul id="recent_menu">
+                            <li ng-class="{recent_active:isSetRecentTab(1)}"><a href ng-click="setRecentTab(1)">COMMERCIAL</a></li>
+                            <li ng-class="{recent_active:isSetRecentTab(2)}"><a href ng-click="setRecentTab(2)">FURNISHED HOMES</a></li>
+                            <li ng-class="{recent_active:isSetRecentTab(3)}"><a href ng-click="setRecentTab(3)">LAND & PLOT</a></li>
+                            <li ng-class="{recent_active:isSetRecentTab(4)}"><a href ng-click="setRecentTab(4)">RENTAL</a></li>
+                        </ul>
+                    </div>
+                    <div id="recent_property_container">
+                        <div class="recent_properties" ng-show="isSetRecentTab(1)" ng-repeat="property in Properties.commercial">
+                            <div id="recent_property_image_holder">
+                                <img ng-src="{{property.photo}}" class="featured_property_image">
+                            </div>
+                            <div class="recent_property_info">
+                                <span class="featured_sale_type_rent" ng-show="property.saleType=='Rent'">On Rent</span>
+                                <span class="featured_sale_type_sell" ng-show="property.saleType=='Sell'">On Sale</span>
+                                <div id="recent_name">{{property.name}}</div>
+                                <div id="recent_address">{{property.address}}</div>
+                                <div id="recent_price">&#8377; {{property.price}}</div>
+                                <div class="recent_fav_icon">
+                                    <img src="Images/favorites_featured.png" id="fav_icon" ng-hide="property.favourite" ng-click="loggedIn&&toggleFavourite(property)">
+                                    <img src="Images/Fav_select.png" id="fav_icon" ng-show="property.favourite" ng-click="loggedIn&&toggleFavourite(property)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="recent_properties" ng-show="isSetRecentTab(2)" ng-repeat="property in Properties.furnished">
+                            <div id="recent_property_image_holder">
+                                <img ng-src="{{property.photo}}" class="featured_property_image">
+                            </div>
+                            <div class="recent_property_info">
+                                <span class="featured_sale_type_rent" ng-show="property.saleType=='Rent'">On Rent</span>
+                                <span class="featured_sale_type_sell" ng-show="property.saleType=='Sell'">On Sale</span>
+                                <div id="recent_name">{{property.name}}</div>
+                                <div id="recent_address">{{property.address}}</div>
+                                <div id="recent_price">&#8377; {{property.price}}</div>
+                                <div class="recent_fav_icon">
+                                    <img src="Images/favorites_featured.png" id="fav_icon" ng-hide="property.favourite" ng-click="loggedIn&&toggleFavourite(property)">
+                                    <img src="Images/Fav_select.png" id="fav_icon" ng-show="property.favourite" ng-click="loggedIn&&toggleFavourite(property)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="recent_properties" ng-show="isSetRecentTab(3)" ng-repeat="property in Properties.landAndPlot">
+                            <div id="recent_property_image_holder">
+                                <img ng-src="{{property.photo}}" class="featured_property_image">
+                            </div>
+                            <div class="recent_property_info">
+                                <span class="featured_sale_type_rent" ng-show="property.saleType=='Rent'">On Rent</span>
+                                <span class="featured_sale_type_sell" ng-show="property.saleType=='Sell'">On Sale</span>
+                                <div id="recent_name">{{property.name}}</div>
+                                <div id="recent_address">{{property.address}}</div>
+                                <div id="recent_price">&#8377; {{property.price}}</div>
+                                <div class="recent_fav_icon">
+                                    <img src="Images/favorites_featured.png" id="fav_icon" ng-hide="property.favourite" ng-click="loggedIn&&toggleFavourite(property)">
+                                    <img src="Images/Fav_select.png" id="fav_icon" ng-show="property.favourite" ng-click="loggedIn&&toggleFavourite(property)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="recent_properties" ng-show="isSetRecentTab(4)" ng-repeat="property in Properties.rental">
+                            <div id="recent_property_image_holder">
+                                <img ng-src="{{property.photo}}" class="featured_property_image">
+                            </div>
+                            <div class="recent_property_info">
+                                <span class="featured_sale_type_rent" ng-show="property.saleType=='Rent'">On Rent</span>
+                                <span class="featured_sale_type_sell" ng-show="property.saleType=='Sell'">On Sale</span>
+                                <div id="recent_name">{{property.name}}</div>
+                                <div id="recent_address">{{property.address}}</div>
+                                <div id="recent_price">&#8377; {{property.price}}</div>
+                                <div class="recent_fav_icon">
+                                    <img src="Images/favorites_featured.png" id="fav_icon" ng-hide="property.favourite" ng-click="loggedIn&&toggleFavourite(property)">
+                                    <img src="Images/Fav_select.png" id="fav_icon" ng-show="property.favourite" ng-click="loggedIn&&toggleFavourite(property)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add Property ------------->
+                <div id="add-property" ng-controller="addPropertyCtrl" ng-init="initFirst()">
+                    <form name="upload_form" novalidate>
+                        <div class="featured-title">
+                            <span id="title-featured">Add</span><span id="title-properties"> Property</span>
+                        </div>
+                        <div id="add_property_tabs">
+                            <ul class="add_property_menu">
+                                <li ng-class="{add_property_active:isSetAddPropertyTab(1)}"><a href ng-click="setAddPropertyTab(1)">BASIC INFORMATION</a></li>
+                                <li ng-class="{add_property_active:isSetAddPropertyTab(2)}"><a href ng-click="setAddPropertyTab(2)" id="property_details_tabs">PROPERTY DETAILS</a></li>
+                            </ul>
+                        </div>
+                        <div id="add_property_basic_info" ng-show="isSetAddPropertyTab(1)">
+                            <div id="sale_type_title_container">
+                                <span id="sale_type_title" class="add_property_titles">I WANT TO</span>
+                                <span class="error_message">&nbsp&nbsp{{property.error.saleType}}</span>
+                            </div>
+                            <div class="left-label">
+                                <input type="radio" name="sale_type_radio" id="sale_type_sell" value="Sell" ng-model="property.saleType">
+                                <label for="sale_type_sell"><span>SELL</span></label>
+                                <input type="radio" name="sale_type_radio" id="sale_type_rent" value="Rent" ng-model="property.saleType">
+                                <label for="sale_type_rent"><span>RENT</span></label>
+                            </div>
+                            <div id="property_type_title_container">
+                                <span id="sale_type_title" class="add_property_titles">PROPERTY TYPE</span>
+                                <span class="error_message">&nbsp&nbsp{{property.error.propertyType}}</span>
+                            </div>
+                            <div class="left-label">
+                                <div class="left_label">
+                                    <input type="radio" name="property_type" id="property_type_commercial" value="COMMERCIAL" ng-model="property.propertyType">
+                                    <label for="property_type_commercial"><span>COMMERCIAL</span></label>
+                                    <input type="radio" name="property_type" id="property_type_furnished" value="FURNISHED HOMES" ng-model="property.propertyType">
+                                    <label for="property_type_furnished"><span>FURNISHED HOMES</span></label>
+                                    <input type="radio" name="property_type" id="property_type_land" value="LAND AND PLOT" ng-model="property.propertyType">
+                                    <label for="property_type_land"><span>LAND & PLOT</span></label>
+                                    <input type="radio" name="property_type" id="property_type_rental" value="RENTAL" ng-model="property.propertyType">
+                                    <label for="property_type_rental"><span>RENTAL</span></label>
+                                </div>
+                            </div>
+                            <div id="add_photo_title_container">
+                                <span id="add_phot_title" class="add_property_titles">ADD YOUR PROPERTY PHOTOS</span>
+                            </div>
+                            <div class="left-label">
+                                <label for="property_photo"><img src="Images/photo-camera.png" id="camera_icon"><span ng-show="property.fileName==undefined">ADD PHOTO</span>
+                                    <span ng-show="property.fileName!=undefined">CHANGE PHOTO</span></label>
+                                <input type="file" id="property_photo" ngf-change="onFileSelect($files)" ngf-select ng-model="property.photo" name="file" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+                                <div id="photo_name" ng-show="property.fileName!=undefined">File Selected : {{property.fileName}}</div>
+                                <div class="error_message" ng-show="property.error.photo!=undefined">{{property.error.photo}}</div>
+                            </div>
+                            <div id="property_address_title_container">
+                                <span id="property_address_title" class="add_property_titles">YOUR PROPERTY ADDRESS</span>
+                                <span class="error_message">&nbsp&nbsp{{property.error.location}}</span>
+                            </div>
+                            <div class="left_label">
+                                <input type="text" id="google_places_ac" gm-places-autocomplete placeholder="Property Location" ng-model="property.city">
+                                <img src="Images/compass.png" id="add_property_loc" ng-click="toggleMap">
+                                <input id="add_property_address" type="text" name="adress" placeholder="Adress" ng-model="property.address">
+                                <input id="add_property_location" type="text" name="location" placeholder="Property Name" ng-model="property.name">
+                            </div>
+                            <div id="property_details_next">
+                                <a ng-click="uploadPic(property.photo)" id="add_property_next">next</a>
+                            </div>
+                        </div>
+                        <div id="add_property_basic_info" ng-show="isSetAddPropertyTab(2)">
+                            <div class="left_label" id="property_details_container">
+                                <input type="text" id="add_price" class="add_property_input_text" name="property_price" placeholder="Asking Price: &#8377;" ng-model="property.price">
+                                <select id="add_bathrooms" class="add_property_dropdowns" name="property_bathrooms" ng-model="property.bathrooms" ng-options="number for number in numbers"><option value="" disabled selected>Bathroom(s) </option></select>
+                                <select id="add_bedrooms" class="add_property_dropdowns" name="property_bedrooms" ng-options="number for number in numbers" ng-model="property.bedrooms"><option value="" disabled selected>Bedroom(s) </option></select>
+                                <span class="error_message">{{property.error.details}}</span>
+                                <div id="property_area_title_container">
+                                    <span id="add_property_area_title" class="add_property_titles">Property Area</span>
+                                    <span class="error_message">&nbsp&nbsp{{property.error.area}}</span>
+                                </div>
+                                <input type="text" id="add_builtup_area" class="add_property_input_text" name="property_builtup_area" placeholder="Built-Up Area" ng-model="property.builtUpArea">
+                                <select id="add_builtup_unit" class="add_property_dropdowns" name="property_builtup_unit" ng-model="property.builtUpUnit" ng-options="unit for unit in units"><option value="" disabled selected>Unit</option></select>
+                                <input type="text" id="add_carpet_area" class="add_property_input_text" name="property_carpet_area" ng-model="property.carpetArea" placeholder="Carpet Area">
+                                <select id="add_carpet_unit" class="add_property_dropdowns" name="property_carpet_unit" ng-model="property.carpetUnit" ng-options="unit for unit in units"><option value="" disabled selected>Unit</option></select>
+                                <div id="transaction_type_title_container">
+                                    <span id="transaction_type_title" class="add_property_titles">Transaction Type</span>
+                                    <span class="error_message">&nbsp&nbsp{{property.error.floors}}</span>
+                                </div>
+                                <input type="radio" name="transaction_type_radio" id="transaction_type_resale" value="resale" ng-model="property.transactionType">
+                                <label class="transaction_type_label_left" for="transaction_type_resale"><span>Resale</span></label>
+                                <input type="radio" name="transaction_type_radio" id="transaction_type_new_booking" value="new_booking" ng-model="property.transactionType">
+                                <label class="transaction_type_label_right" for="transaction_type_new_booking"><span>New Booking</span></label>
+                                <select id="add_property_floor" class="add_property_dropdowns" name="property_floor" ng-model="property.propertyFloor" ng-options="number for number in numbers"><option value="" disabled selected>Property Floor</option></select>
+                                <select id="add_property_ownership" class="add_property_dropdowns" name="property_ownership" ng-model="property.ownership" ng-options="ownership for ownership in ownerships"><option value="" disabled selected>Ownership </option></select>
+                                <select id="add_property_total_floors" class="add_property_dropdowns" name="property_total_floors" ng-model="property.totalFloors" ng-options="number for number in numbers"><option value="" disabled selected>Total Floors </option><option>Hello</option></select>
+                                <div id="property_availability_title_container">
+                                    <span id="add_property_availability_title" class="add_property_titles">Availability</span>
+                                    <span class="error_message">&nbsp&nbsp{{property.error.description}}</span>
+                                </div>
+                                <input type="radio" name="property_availability_radio" id="property_availability_ready" value="Ready To Move" ng-model="property.availability">
+                                <label class="transaction_type_label_left" for="property_availability_ready"><span>Redy To Move</span></label>
+                                <input type="radio" name="property_availability_radio" id="property_availability_under_construction" value="Under Construction" ng-model="property.availability">
+                                <label class="transaction_type_label_right" for="property_availability_under_construction"><span>Under Construction</span></label>
+                                <textarea id="add_property_description" name="property_description" placeholder="Description" ng-model="property.description"></textarea>
+                                <button type="submit" ng-click="validateForm()" id="add_property_submit" value="add_property_submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <!-- Contact Us ------------->
+                <div id="contact-us" ng-controller="contactCtrl">
+                    <span id="title-contact">Contact</span>
+                    <span id="title-us">Us</span>
+                    <div id="contact-location">
+                        <img src="Images/Location_Aboutus.png" id="contact-loc-icon">
+                        <span id="contact-loc-title">Our Location</span>
+                    </div>
+                    <div id="contact-map">
+                        <div id="google_maps_top">
+                            <ng-map center="[10.01478,76.363654]" styles='[
+    {
+        "featureType": "all",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "saturation": 36
+            },
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 40
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 16
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 20
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 17
+            },
+            {
+                "weight": 1.2
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 20
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 21
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 17
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 29
+            },
+            {
+                "weight": 0.2
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 18
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 16
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 19
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 17
+            }
+        ]
+    }
+]' disable-default-u-i="true">
+                                <marker icon="{{customIcon}}" position="{{10.01478}},{{76.363654}}" title="Real Buy"></marker>
+                            </ng-map>
+                        </div>
+                    </div>
+                    <div id="contact-address">
+                        <img src="Images/Address_Desktop.png">
+                        <span id="contact-address-title">Address</span>
+                    </div>
+                    <div id="contact-address-details">
+                        <div id="contact-address-info">
+                            9A, 9th floor, <br> Carnival Infopark, Kakkanad, <br> Kochi - 682 030
+                        </div>
+                        <div id="contact-phone-details">
+                            Phone : 0484-2415010 <br> Email : support@realbuy.com
+                        </div>
+                        <div id="contact-work-timing">
+                            Opening Hours: Monday - Friday : 9 am To 6 pm <br> Saturday - Sunday : 9 am To 2 pm
+                        </div>
+                    </div>
+                    <div id="contact-agent">
+                        <img src="Images/mail.png" id="contact-mail">
+                        <span id="contact-agent-title">Contact our agent</span>
+                    </div>
+                    <form name="contactUsForm" ng-submit="validateInput()" novalidate>
+                        <div id="contact-input">
+                            <div id="contact-inputs-left">
+                                <input type="text" id="cname" class="contact-input-boxes" placeholder="Name" ng-model='name' required>
+                                <input type="email" id="cemail" class="contact-input-boxes" placeholder="Email" ng-model='email' ng-pattern="emailPattern" required>
+                                <input type="text" id="cphone" class="contact-input-boxes" placeholder="Phone number" ng-model='phone' ng-pattern="phonePattern" required>
+                            </div>
+                            <div id="contact-message">
+                                <textarea rows="5" cols="50" id="cmessage" placeholder="Message" ng-model='message' required></textarea>
+                                <span class="error_message">{{error}}</span>
+                            </div>
+                            <div id="contact-submit">
+                                <button type="submit" id="contact-submit-button">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

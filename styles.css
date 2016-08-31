@@ -10,6 +10,28 @@
   font-family: Antipasto;
 }
 
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {   
+  //border-color: rgba(126, 239, 104, 0.8);
+  //box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6);
+  outline: 0 none;
+}
+
+
 body 
 {
   width:100%;
@@ -205,7 +227,7 @@ button .close
 #welcome
 {
     margin-left: 10.41%;
-    margin-top: 23.25%;
+    margin-top: 17.25%;
     width: 39.375%;
     font-size: 2.4vw;
     color: rgba(255, 255, 255, 1);
@@ -238,6 +260,12 @@ button .close
     border: none;
     padding-bottom: 1%;
     padding-top: 1%;
+}
+
+.activeSearchButton
+{
+    background-color: rgba(39, 53, 71, 1);
+    color: rgba(255, 255, 255, 1);
 }
 
 #salebutton
@@ -455,6 +483,7 @@ img
 #about-us
 {
     width:100%;
+    //min-height: 350px;
     height: 48%;
     margin-top: 0.5%;
     background-color: rgba(22, 22, 22, 1);
@@ -482,7 +511,7 @@ img
   margin-top: 2.21%;
   width: 100%;
   font-family: Antipasto;
-  font-size: 0.73vw;
+  font-size: 12px;
   color: rgba(255, 255, 255, 1);
   text-align: left;
   padding-right: 3.47%;
@@ -496,13 +525,15 @@ aboutus_info
 
 #aboutus_location_details
 {
-    width: 100%;
+    float: left;
     
 }
 
 #aboutus_location_icon
 {
-    width: 2.6%;
+    width: 25px;
+    height: 32px;
+    float: left;
 }
 
 #aboutus_address_title
@@ -510,40 +541,42 @@ aboutus_info
     display: inline;
     vertical-align: text-top;
     padding-left: 2.268%;
-    font-size: 0.94vw;
+    font-size: 16px;
     color: rgba(255, 255, 255, 1);
     text-align: left;    
 }
 
 #aboutus_address
 {
-    font-size: 0.67vw;
+    font-size: 12px;
     vertical-align: text-top;
-    margin-top: -1.5%;
-    padding-left: 5%;
     color: rgba(255, 255, 255, 1);
     text-align: left; 
+    width: 70%;
+    padding-left: 10%;
     
 }
 
 #aboutus_phone_details
 {
-    margin-top: 3.75%;
-    width: 100%;
+    float: left;
+    width: 30%;
     
 }
 
 #aboutus_phone_icon
 {
-     width: 2.7%;
+     width: 27px;
+     height: 27px;
+     float: left;
 }
 
 #aboutus_phone_title
 {
     display: inline;
-    vertical-align: text-top;
+    //vertical-align: text-top;
     padding-left: 2.268%;
-    font-size: 0.94vw;
+    font-size: 16px;
     color: rgba(255, 255, 255, 1);
     text-align: left;    
 }
@@ -551,10 +584,9 @@ aboutus_info
 
 #aboutus_phone
 {
-    font-size: 0.67vw;
-    vertical-align: text-top;
-    margin-top: -1.5%;
-    padding-left: 5%;
+    font-size: 12px;
+    //vertical-align: text-top;
+    padding-left: 12%;
     color: rgba(255, 255, 255, 1);
     text-align: left; 
     
@@ -562,8 +594,9 @@ aboutus_info
 
 #about_us_contact
 {
-    margin-top: 3.75%;
+    clear: left;
     width: 100%;
+    padding-top: 1%;
     padding-left: 4.6%;
 }
 
@@ -572,7 +605,7 @@ aboutus_info
     height: 10%;
     padding:1%;
     width: 14.17%;
-    font-size: 0.83vw;
+    font-size: 12px;
     border: none;
     color: rgba(255, 255, 255, 1);
     background-color: rgba(47, 181, 110, 1);
@@ -580,7 +613,7 @@ aboutus_info
 
 #featured
 {
-  height: 87%;
+  min-height: 87%;
   width: 100%;
   background-color: rgba(22, 22, 22, 1);
   margin-top: 1.03%;
@@ -788,12 +821,11 @@ li
   position: absolute;
   display: block;
   width: 15%;
-  height: 20%;
   left: 47%;
   top: 30%;
   padding-left: 2.38%;
   font-family: Antipasto;
-  font-size: 0.845vw;
+  font-size: 14px;
   color: rgba(184, 184, 184, 1);
   text-align: left;
 }
@@ -803,12 +835,12 @@ li
   position: absolute;
   display: block;
   width: 15%;
-  height: 20%;
   left: 47%;
   top: 50%;
+  margin-top: 0.3%;
   padding-left: 2.38%;
   font-family: Antipasto;
-  font-size: 0.85%;
+  font-size: 14px;
   color: rgba(255, 255, 255, 1);
   text-align: left;
 }
@@ -827,12 +859,11 @@ li
   position: absolute;
   display: block;
   width: 15%;
-  height: 20%;
   left: 67%;
   top: 30%;
   padding-left: 3.97%;
   font-family: Antipasto;
-  font-size: 0.845vw;
+  font-size: 14px;
   color: rgba(184, 184, 184, 1);
   text-align: left;
 }
@@ -841,13 +872,14 @@ li
 {
   position: absolute;
   display: block;
+   margin-top: 0.3%;
   width: 15%;
   height: 20%;
   left: 67%;
   top: 50%;
   padding-left: 3.97%;
   font-family: Antipasto;
-  font-size: 0.85vw;
+  font-size: 14px;
   color: rgba(255, 255, 255, 1);
   text-align: left;
 }
@@ -871,7 +903,7 @@ li
   top: 30%;
   padding-left: 2.69%;
   font-family: Antipasto;
-  font-size: 0.845vw;
+  font-size: 14px;
   color: rgba(184, 184, 184, 1);
   text-align: left;
 }
@@ -881,12 +913,13 @@ li
   position: absolute;
   display: block;
   width: 15%;
+  margin-top: 0.3%;
   height: 20%;
   left: 87%;
   top: 50%;
   padding-left: 2.69%;
   font-family: Antipasto;
-  font-size: 0.85vw;
+  font-size: 14px;
   color: rgba(255, 255, 255, 1);
   text-align: left;
 }
@@ -951,6 +984,7 @@ li
 
 #contact-address-details
 {
+    margin-top: 1%;
     height: 3%;
     width: 100%;
     font-size: 0.78vw;
@@ -987,6 +1021,7 @@ li
 #contact-mail
 {
     width:1.54%;
+    
 }
 
 #contact-agent-title
@@ -1010,7 +1045,7 @@ li
 {
     width: 100%;
     height: 5%;
-    padding-left: 1%;
+    padding-left: 1.5%;
     margin-bottom: 2%;
     background-color: rgba(22, 22, 22, 1);
     border: 1px solid rgba(140, 140, 140, 1);
@@ -1030,6 +1065,7 @@ li
     background-color: rgba(22, 22, 22, 1);
     border: 1px solid rgba(140, 140, 140, 1);
     resize: none;
+    padding-left: 5px;
 }
 
 #contact-submit
@@ -1086,7 +1122,7 @@ li
   width: 33.33%;
   height: 50%;
   padding-right: 1%;
-  padding-bottom: 1%;
+  padding-bottom: 10%;
   float: left;
 }
 
@@ -1125,7 +1161,7 @@ li
 
 #featured_name
 {
-  font-size: 0.73vw;
+  font-size: 13px;
   color: rgba(225, 225, 225, 1);
   position: relative;
   top: 10%;
@@ -1133,7 +1169,7 @@ li
 
 #featured_price
 {
-  font-size: 0.83vw;
+  font-size: 14px;
   color: rgba(47, 181, 110, 1);
   position: relative;
   top: 10%;
@@ -1141,7 +1177,7 @@ li
 
 #featured_details
 {
-  font-size: 0.73vw;
+  font-size: 13px;
   position: relative;
   top: 10%;
   width: 100%;
@@ -1166,16 +1202,16 @@ li
 {
   padding-left: 7.64%;
   float: left;
-  width: 75%;
+  width: 85%;
   padding-top: 2%;
-  font-size: 0.9375vw;
+  font-size: 14px;
 }
 
 .featured_value
 {
   float: right;
   width: 10%;
-  font-size: 0.9375vw;
+  font-size: 14px;
   padding-right: 10px;
   text-align: right;
 }
@@ -1196,7 +1232,7 @@ li
     margin-left: 4.6%;
 }
 
-.featured_sale_type
+.featured_sale_type_rent
 {
   height: 22px;
   line-height: 22px;
@@ -1205,6 +1241,20 @@ li
   right: 14px;
   bottom: calc(100% - 11px);
   background-color: rgba(47, 181, 110, 1);
+  position: absolute;
+  border: none;
+  color: rgba(255, 255, 255, 1);
+}
+
+.featured_sale_type_sell
+{
+  height: 22px;
+  line-height: 22px;
+  text-align: center;
+  width: 70px;
+  right: 14px;
+  bottom: calc(100% - 11px);
+  background-color: rgba(231, 93, 54, 1);
   position: absolute;
   border: none;
   color: rgba(255, 255, 255, 1);
@@ -1221,7 +1271,7 @@ li
    margin-left:54%;
 }
 
-.recent_menu li
+#recent_menu li
 {
   float: left;
   padding-left: 1.25%;
@@ -1230,10 +1280,9 @@ li
   list-style-type: none;
 }
 
-.activeRecentOption
+.recent_active a
 {
-    color: rgba(47, 181, 110, 1);
-    cursor: pointer;
+       color: rgba(47, 181, 110, 1);
 }
 
 #recent_property_container
@@ -1289,14 +1338,14 @@ li
 
 #recent_name
 {
-  font-size: 0.9375vw;
+  font-size: 15px;
   color: rgba(225, 225, 225, 1);
   position: relative;
   top: 10%;
 }
 #recent_address
 {
-  font-size: 0.83vw;
+  font-size: 13px;
   color: rgba(225, 225, 225, 1);
   position: relative;
   top: 10%;
@@ -1304,7 +1353,7 @@ li
 #recent_price
 {
   float: left;
-  font-size: 0.83vw;
+  font-size: 13px;
   color: rgba(47, 181, 110, 1);
   position: relative;
   top: 10%;
@@ -1314,9 +1363,14 @@ li
 {
   float: right;
   width: 10%;
-  font-size: 0.9375vw;
+  font-size: 15px;
   padding-right: 10px;
   text-align: right;
+}
+
+.hidden
+{
+    display: hidden;
 }
 
 #add_property_tabs
@@ -1343,9 +1397,10 @@ li
     font-size: 1.04vw;
 }
 
-.activeAddPropertyOption
+.add_property_active a
 {
     color: rgba(47, 181, 110, 1);
+    text-decoration: underline;
     cursor: pointer;
 }
 
@@ -1371,7 +1426,7 @@ li
     color: rgba(255, 255, 255, 1);
     text-align: left;
     padding-left: 20px;
-    line-height: 16px;
+    //line-height: 16px;
     padding-bottom: 6px;
     padding-top: 6px;
 }
@@ -1519,6 +1574,12 @@ input[type="radio"]:checked + label span
     background-color: rgba(41, 41, 41, 1);  
 }
 
+#photo_name
+{
+    color: green;
+    font-size: 14px;
+}
+
 #property_photo
 {
   display: none;
@@ -1660,7 +1721,7 @@ input[type="radio"]:checked + label span
 
 #add_builtup_unit
 {
-    width: 15%;
+    width: 17%;
 }
 
 #add_carpet_area
@@ -1673,7 +1734,7 @@ input[type="radio"]:checked + label span
 
 #add_carpet_unit
 {
-    width: 15%;
+    width: 17%;
 }
 
 #transaction_type_title_container
@@ -1776,6 +1837,296 @@ input[type="radio"]:checked + label span
 .error_message
 {
   color: red;
-  font-size: 12px;
+  font-size: 14px;
   padding-left: 10px;
+}
+
+.ng-invalid.ng-dirty
+{
+    border-color: red;
+}
+
+#login-success
+{
+    position: absolute;
+    z-index: 3;
+    top:100px;
+    left: 25%;
+    width: 20%;
+}
+
+#add-property-success
+{
+    position: absolute;
+    z-index: 4;
+    top:100px;
+    left: 25%;
+    width: 25%;
+    
+}
+
+
+
+
+/* For Search Page */
+
+
+#logo_small
+{
+    position: absolute;
+    top: 2.85%;
+    left: 1.51%;
+    width: 10%;
+    
+}
+
+#search_main_menu
+{
+    margin-top: 12px;
+    float: right;
+    
+}
+
+#search_property_container
+{
+    position: absolute;
+top: 12%;
+left: 0px;
+height: 78%;
+width: 100%;
+background-color: rgba(22, 22, 22, 1);
+
+padding-top: 1.19%;
+}
+
+#search_footer
+{
+    position: fixed;
+    margin-left: 10px;
+    padding-left: 70px;
+    width: 100%;
+    bottom: 0;
+    height: 10%;
+    padding-top: 2%;
+    background-color: rgba(11, 11, 11, 1);
+    
+}
+
+#search_property_title_container
+{
+    padding-left: 2.08%;
+    width: 100%;
+}
+
+#search_recent_tabs
+{
+    float: right;
+    width: 20%;
+}
+
+#filterOptions
+{
+    padding-left: 2.08%;
+    margin-top: 3.125%;
+}
+
+#filter-location
+{
+    height: 5.75%;
+    width: 9.69%;
+
+    -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance:none;
+  background: url('Images/dropdown_arrow.png') no-repeat 95% center;
+  background-color: rgba(240, 240, 240, 1);
+  font-family: Antipasto;
+  font-size: 13px;
+  padding: 2px;
+  color: rgba(51, 51, 51, 1);
+}
+
+
+#filter-status
+{
+    height: 5.75%;
+    width: 9.69%;
+
+    -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance:none;
+  background: url('Images/dropdown_arrow.png') no-repeat 95% center;
+  background-color: rgba(240, 240, 240, 1);
+  font-family: Antipasto;
+  font-size: 13px;
+  padding: 2px;
+  color: rgba(51, 51, 51, 1);
+}
+
+
+#filter-area
+{
+    height: 5.75%;
+    width: 9.69%;
+
+    -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance:none;
+  background: url('Images/dropdown_arrow.png') no-repeat 95% center;
+  background-color: rgba(240, 240, 240, 1);
+  font-family: Antipasto;
+  font-size: 13px;
+  padding: 2px;
+  color: rgba(51, 51, 51, 1);
+}
+
+#search_search
+{
+    width: 6.46%;
+    margin-left: 1px;
+    height: 5.5%;
+    position: absolute;
+    background-color: rgba(47, 181, 110, 1);
+    border: none;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+}
+
+#search_pagination_arrows
+{
+    float: right;
+    margin-right: 20px;
+}
+
+#search_prev
+{
+    margin-right: 10px;
+}
+
+.search_tiles
+{
+    float: left;
+    margin-top:  2.083333333%;
+    margin-left: 2.083333333%;
+    width: 46.9799%;
+    height: 35.387%;
+    border: 1px solid rgba(56, 55, 55, 1);
+}
+
+.search_tile_content
+{
+    padding-left: 2.222222222%;
+    padding-top: 2.222222222%;
+    padding-bottom: 2.222222222%;
+    width: 100%;
+    height: 75.865%;
+}
+
+.search_tile_footer
+{
+    width: 100%;
+    height: 23.793103448%;
+    background-color: rgba(35, 35, 35, 1);
+    padding: 2.4% 4.3%;
+}
+
+.search_tile_img
+{
+    float: left;
+    width: 31.818181818%;
+    height: 100%;
+}
+
+.search_tile_body
+{
+    float: left;
+    margin-left: 2.222222222%;
+    height: 100%;
+    width: 65%;
+}
+
+#search_indian_rupee
+{
+    font-family: PingFangSC-Regular;
+font-size: 1.145833333vw;
+color: rgba(47, 181, 110, 1);
+text-align: left;
+}
+
+#search_rupee
+{
+font-family: Antipasto;
+font-size: 1.145833333vw;
+color: rgba(47, 181, 110, 1);
+text-align: left;
+}
+
+#search_type_loc
+{
+    font-size: 0.833333333vw;
+    color: rgba(176, 176, 176, 1);
+    text-align: left;
+    line-height: 1.041666667vw;
+}
+
+#search_type_loc_val
+{
+    font-family: Antipasto;
+font-size: 0.9375vw;
+color: rgba(255, 255, 255, 1);
+text-align: left;
+line-height: 1.041666667vw;
+}
+
+#search_desc
+{
+    font-family: Antipasto;
+    font-size: 0.833333333vw;
+color: rgba(255, 255, 255, 1);
+text-align: left;
+line-height: 1.041666667vw;
+}
+
+
+#search_mail
+{
+    width: 4.015%;
+}
+
+.search_tiles_footer_labels
+{
+font-family: Antipasto;
+font-size: 0.833333333vw;
+color: rgba(198, 198, 198, 1);
+text-align: center;
+    
+}
+
+#search_phone
+{
+    margin-left: 9%;
+    width: 3.03%;
+}
+
+#search_star
+{
+    margin-left: 7.5%;
+    width: 3.03%;
+}
+
+#search_map_icon
+{
+    width: 2.5%;
+   margin-left: 7.5%;
+}
+
+#search_share_icon
+{
+    width: 2.5%;
+    margin-left: 7.5%;
+}
+
+.search_tile_titles
+{
+    margin-bottom: 1%;
 }

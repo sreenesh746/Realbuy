@@ -1,497 +1,155 @@
-<html ng-app="realBuyApp" ng-controller="mainCtrl" data-ng-init="fetchAll()">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Realbuy</title>
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-        <script src="http://jvandemo.github.io/angularjs-google-maps/dist/angularjs-google-maps.js"></script>
-        <script src="http://jvandemo.github.io/angularjs-google-maps/dist/angularjs-google-maps.js"></script>
-        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&libraries=places&language=en-US&key=AIzaSyBWuEUWYKjOLCbacFx98nxPzqgPMUmTyA4"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular-resource.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
-        <script src="http://rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="styles.css">
-    </head>
-    <body>
-        <div id="wrapper">
-             <login title="LOGIN" id="login" visible="showLogin">
-                <form role="form">
-                    <div class="form-group">
-                        <label for="Email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="user.email"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password" ng-model="user.password"/>
-                    </div>
-                    <button type="submit" class="login_submit" ng-click="validateLoginForm()">Submit</button>
-                    <div id="forgot_pass"><a href="#forgot_password_layout" id="reg_link">forgot password</a></div>
-                    <div id="login_or">Or</div>
-                    <div id="social_login1">
-                        <img src="../../Images/fb.png">
-                        <img src="../../Images/twitter.png">
-                        <img src="../../Images/g+.png">
-                    </div>
-                    <div id="register_link">
-                        Don’t have an account? <a ng-click="toggleSignUp()" id="reg_link">Create Account</a>
-                    </div>
-                </form>
-            </login>
-            <signup title="SIGN UP" id="signup" visible="showSignUp">
-                <form role="form">
-                    <div class="form-group">
-                        <label for="Name">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Your Name" ng-model="user.name"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="Phone">Phone</label>
-                        <input type="text" class="form-control" id="phone" placeholder="Your Phone" ng-model="user.phone"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="Address">Address</label>
-                        <input type="text" class="form-control" id="address" placeholder="Your Address" ng-model="user.address"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="Email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Your Email" ng-model="user.email"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password" ng-model="user.password"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmPassword">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" ng-model="user.confirmPassword"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="profile_photo"><img src="../../Images/photo-camera.png" id="camera_icon"><div>Avatar</div></label>
-                        <input type="file" id="profile_photo" ngf-select ng-model="user.avatar" name="file" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
-                    </div>
-                    <button type="submit" class="signup_submit" ng-click="validateSignUpForm()">Submit</button>
-                </form>
-            </signup>
-            <div id="leftcontainer">
-                <div id="divlogo">
-                    <img src="Images/Logo.png" id="logo">
-                </div>
-                <div id="welcome">
-                    Welcome to realbuy
-                </div>
-                <div id="desc">
-                   Realbuy is a real estate firm with a vision to create luxurious living spaces that surpass the expectations of customers. Although recently launched the firm is driven with an instinct and far stretching insight that improves the real estate offerings in the city...
-                </div>
-                <div id="search_menu">
-                    <button class="searchbuttons" id="salebutton">SALE</button>
-                    <button class="searchbuttons" id="rentbutton">RENT</button>
-                    <button class="searchbuttons" id="readybutton">READY TO MOVE</button>
-                    <button class="searchbuttons" id="underbutton">UNDER CONSTRUCTION</button>
-                </div>
-                <div id="searchtext">
-                    <input type="text" id="searchtxt" placeholder="Type Location or Project/Society or Keyword"></input>
-                    <button id="search">SEARCH</button>
-                </div>
-                <div id="footer">
-                    <div id="fb">
-                        <img src="Images/fb.png">
-                    </div>
-                    <div id="tw">
-                        <img src="Images/twitter.png">
-                    </div>
-                    <div id="gp">
-                        <img src="Images/g+.png">
-                    </div>
-                    <div id="copyright">
-                        &copy; 2016. realbuy.com. All rights reserved.
-                    </div>
-                </div>
+<html ng-app="realBuyApp">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realbuy</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="https://code.angularjs.org/1.2.6/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://jvandemo.github.io/angularjs-google-maps/dist/angularjs-google-maps.js"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&libraries=places&language=en-US&key=AIzaSyBWuEUWYKjOLCbacFx98nxPzqgPMUmTyA4"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular-resource.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="http://rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<script>
+    /* function myFunction(){
+                console.log("load");
+               //
+            */
+
+    /* $("#content").scrollspy({target: ".navbar"});
+    $(".navbar").on("activate.bs.scrollspy", function(){
+        var x = $(".nav li.active > a").text();
+        if(x=="RECENT PROPERTIES"){
+            document.getElementById("com").click();
+        }
+    });
+    // Add smooth scrolling on all links inside the navbar
+  $(".navbar a").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, #content').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        //window.location.hash = hash;
+      });
+    }  // End if
+  });*/
+</script>
+
+<body ng-controller="mainCtrl">
+    <form name="loginForm" ng-submit="loginForm.$valid&&validateLoginForm()" novalidate>
+        <login title="LOGIN" id="login" visible="showLogin">
+
+            <div class="form-group">
+                <label for="Email">Email</label><span class="error_message" ng-show="(loginForm.$submitted||loginForm.email.$dirty)&&loginForm.email.$invalid">Email is required</span>
+                <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" ng-model="user.email" required/>
+
             </div>
-            <div id="rightcontainer">
-                <div id="navmenu">
-                    <nav id="menu" class="navbar navbar-inverse">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#home">HOME</a></li>
-                            <li><a href="#about-us">ABOUT US</a></li>
-                            <li><a href="#featured">FEATURED PROPERTIES</a></li>
-                            <li><a href="#recent-properties">RECENT PROPERTIES</a></li>
-                            <li ><a href="#add-property" ng-click="checkLogin()">ADD PROPERTY</a></li>
-                            <li><a href="#contact-us" >CONTACT US</a></li>
-                            <li><a ng-hide="loggedIn" ng-click="toggleLogin()">LOGIN</a>
-                            <li><a ng-show="loggedIn"  ng-click="logout()">LOGOUT</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <div id="holder">
-                    <div id="content" data-spy="scroll" data-target=".navbar" data-offset="50">
-                        <div id="home">       
-                            <div ng-controller="HomeCtrl" id="home_carousel">
-                                <carousel interval="myInterval">
-                                  <slide ng-repeat="slide in slides" active="slide.active">
-                                    <img ng-src="{{slide.image}}">
-                                    <div class="carousel-caption" align="left">
-                                      <div id="carousel_info">
-                                        <img src="Images/Location_carousel.png" id="carousel_location_icon">
-                                        <div id="carousel_title">{{slide.title}}</div>
-                                        <div id="carousel_price">{{slide.price}}</div>
+            <div class="form-group">
+                <label for="password">Password</label><span class="error_message" ng-show="(loginForm.$submitted||loginForm.password.$dirty)&&loginForm.password.$invalid">Password is required</span>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="user.password" required/>
+            </div>
+            <button type="submit" class="login_submit">Submit</button>
+            <div class="error_message">{{loginServerError}}</div>
+            <div id="forgot_pass"><a href="#forgot_password_layout" id="reg_link">forgot password</a></div>
+            <div id="login_or">Or</div>
+            <div id="social_login1">
+                <img src="Images/fb.png">
+                <img src="Images/twitter.png">
+                <img src="Images/g+.png">
+            </div>
+            <div id="register_link">
+                Don’t have an account? <a ng-click="toggleSignUp()" id="reg_link">Create Account</a>
+            </div>
+        </login>
+    </form>
 
-                                        <img src="Images/Area.png" id="carousel_area_icon">
-                                        <div id="carousel_area_title">Area</div>
-                                        <div id="carousel_area">{{slide.area}}</div>
+    <form name="signUpForm" ng-submit="signUpForm.$valid&&validateSignUpForm()" novalidate>
+        <signup title="SIGN UP" id="signup" visible="showSignUp">
+            <div class="form-group">
+                <label for="Name">Name</label><span class="error_message" ng-show="(signUpForm.$submitted||signUpForm.name.$dirty)&&signUpForm.name.$invalid">Name is required</span>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" ng-model="user.name" required/>
+            </div>
+            <div class="form-group">
+                <label for="Phone">Phone</label>
+                <span class="error_message" ng-show="(signUpForm.$submitted||signUpForm.phone.$dirty)&&signUpForm.phone.$invalid">Invalid Phone</span>
+                <input type="text" class="form-control" id="phone" name="phone" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" placeholder="Your Phone" ng-model="user.phone" required/>
+            </div>
+            <div class="form-group">
+                <label for="Address">Address</label>
+                <span class="error_message" ng-show="(signUpForm.$submitted||signUpForm.address.$dirty)&&signUpForm.address.$invalid">Address is required</span>
+                <input type="text" class="form-control" id="address" name="address" placeholder="Your Address" ng-model="user.address" required/>
+            </div>
+            <div class="form-group">
+                <label for="Email">Email</label><span class="error_message" ng-show="(signUpForm.$submitted||signUpForm.email.$dirty)&&signUpForm.email.$invalid">Invalid email</span>
+                <input type="email" name="email" class="form-control" id="email" placeholder="Your Email" ng-model="user.email" required/>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label><span class="error_message" ng-show="(signUpForm.$submitted||signUpForm.password.$dirty)&&signUpForm.password.$invalid">Minimum 8 characters with atleast one upper case, lower case, numric and special charater each</span>
+                <input type="password" name="password" class="form-control" id="password" ng-pattern="/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/" placeholder="Password" ng-model="user.password" required/>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label><span class="error_message" ng-show="(signUpForm.$submitted||signUpForm.confirmPassword.$dirty)&&signUpForm.confirmPassword.$invalid">Passwords do not match</span>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" compare-to="user.password" placeholder="Confirm Password" ng-model="user.confirmPassword" required/>
+            </div>
+            <div class="form-group">
+                <label for="profile_photo"><img src="../../Images/photo-camera.png" id="camera_icon">
+                            <div>Avatar</div></label><span class="error_message" ng-show="(signUpForm.$submitted||signUpForm.avatar.$dirty)&&signUpForm.avatar.$invalid">Invalid file [Accepted formats: JPEG/PNG Max: 2MB]</span><span class="error_message" ng-show="signUpServerError">{{signUpServerError}}</span>
+                <input type="file" id="profile_photo" name="avatar" ngf-select ng-model="user.avatar" ngf-change="onFileSelect($files)" name="file" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+            </div>
+            <button type="submit" class="signup_submit">Submit</button>
+        </signup>
+    </form>
+    <div ui-view></div>
 
-                                        <img src="Images/bathroom.png" id="carousel_bedroom_icon">
-                                        <div id="carousel_bedroom_title">Bedrooms</div>
-                                        <div id="carousel_bedroom">{{slide.bedroom}}</div>
-
-                                        <img src="Images/bathroom.png" id="carousel_bathroom_icon">
-                                        <div id="carousel_bathroom_title">Bathrooms</div>
-                                        <div id="carousel_bathroom">{{slide.bathroom}}</div>
-                                      </div>
-                                    </div>
-                                  </slide>
-                                </carousel>
-                            </div>
-                        </div>
-                        <div id="about-us">
-                            <div id="abouttitle">
-                                <span id="about">About</span>
-                                <span id="us">Us</span>
-                                <div id="aboutus_desc">
-                                    <p>Realbuy is a real estate firm with a vision to create luxurious living spaces that surpass the expectations of customers. Although recently launched the firm is driven with an instinct and far stretching insight that improves the real estate offerings in the city. Realbuy is a well-known name in creating the high-quality residential projects in Kochi region. With years of experience, the company has earned a good reputation in providing quality construction along with its dedicated team. It is a diversified group with significant .</p>
-                                    <p>Realbuy has built a remarkable name and has established itself as one of the well known entities in the real estate arena. Providing help and assistance to the clients regarding realty issues along with offering useful and effective real estate solutions, stems out as the company's main motto sinc.</p>
-                                </div>
-                                <div id="aboutus_info">
-                                    <div id="aboutus_location_details">
-                                        <img src="Images/Location_Aboutus.png" id="aboutus_location_icon">
-                                        <div id="aboutus_address_title">Address</div>
-                                        <div id="aboutus_address"> 9A, 9th floor, Carnival Infopark, Kakkanad, Kochi - 682 030</div>
-                                    </div>
-                                    <div id="aboutus_phone_details">
-                                        <img src="Images/phone_Aboutus.png" id="aboutus_phone_icon">
-                                        <div id="aboutus_phone_title">Phone</div>
-                                        <div id="aboutus_phone"> 0484-2415010 </div>
-                                    </div>
-                                    <div id="about_us_contact">
-                                        <button id="aboutus_contactus">CONTACT NOW</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <!-- Featured Properties -------->
-                         <div id="featured">
-                             <div id="featured-title">
-                                <span id="title-featured">Featured</span><span id="title-properties"> Properties</span>
-                                <div id="pagination"> 
-                                    <button class="page_arrows" >
-                                        <img src="Images/Prev_Arrow_Featured.png">
-                                    </button>
-                                    <button class="page_arrows">
-                                        <img src="Images/Next_Arrow_Featured.png">
-                                    </button>
-                                 </div>
-                            </div>
-                            <div id="featured_property_container">
-                                <div class="featured_properties" ng-repeat="property in Properties.featured">
-                                    <div id="featured_property_image_holder">
-                                        <img ng-src="{{property.photo}}" class="featured_property_image">
-                                        <span class="hot_offer">HOT OFFER</span>
-                                    </div>
-                                    <div class="featured_property_info">
-                                        <div id="featured_name">{{property.name}}</div>
-                                        <div id="featured_price">&#8377; {{property.price}}</div>
-                                        <div id="featured_details">
-                                            <div class="featured_icons">
-                                                <div class="featured_icon_image"><img src="Images/Bed_featured.png" class="featured_icon"></div>
-                                                <div class="featured_icon_title"> Beds</div>
-                                            </div>
-                                            <div class="featured_value">{{property.bedrooms}}</div>
-                                        </div>
-                                        <div id="featured_details">
-                                            <div class="featured_icons">
-                                                <div class="featured_icon_image"><img src="Images/bath_featured.png" class="featured_icon"></div>
-                                                <div class="featured_icon_title" id="featured_bath_title"> Bathrooms</div>
-                                            </div>
-                                            <div class="featured_value">{{property.bathrooms}}</div>
-                                        </div>
-                                        <div id="featured_details">
-                                            <div class="featured_icons">
-                                                <div class="featured_icon_image"><img src="Images/map_featured.png" class="featured_icon"></div>
-                                                <div class="featured_icon_title" id="featured_map_title">{{property.address}}</div>
-                                            </div>
-                                            <div class="featured_value">
-                                                <img src="Images/favorites_featured.png" id="fav_icon">
-                                            </div>
-                                        </div>
-                                        <span class="featured_sale_type">On Rent</span>
-                                    </div>
-                                </div>
-                               <!--
-                                <div class="featured_properties">
-                                    <div id="featured_property_image_holder">
-                                        <img src="Images/carousel0.png" class="featured_property_image">
-                                        <span class="hot_offer">HOT OFFER</span>
-                                    </div>
-                                    <div class="featured_property_info">
-                                        <div id="featured_name">Puravankara</div>
-                                        <div id="featured_price">&#8377; 28,235/Month</div>
-                                        <div id="featured_details">
-                                            <div class="featured_icons">
-                                                <div class="featured_icon_image"><img src="Images/Bed_featured.png" class="featured_icon"></div>
-                                                <div class="featured_icon_title"> Beds</div>
-                                            </div>
-                                            <div class="featured_value">3</div>
-                                        </div>
-                                        <div id="featured_details">
-                                            <div class="featured_icons">
-                                                <div class="featured_icon_image"><img src="Images/bath_featured.png" class="featured_icon"></div>
-                                                <div class="featured_icon_title" id="featured_bath_title"> Bathrooms</div>
-                                            </div>
-                                            <div class="featured_value">3</div>
-                                        </div>
-                                        <div id="featured_details">
-                                            <div class="featured_icons">
-                                                <div class="featured_icon_image"><img src="Images/map_featured.png" class="featured_icon"></div>
-                                                <div class="featured_icon_title" id="featured_map_title"> Marinedrive, Kochi</div>
-                                            </div>
-                                            <div class="featured_value">
-                                                <img src="Images/favorites_featured.png" id="fav_icon">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="featured_properties">
-                                    <div id="featured_property_image_holder">
-                                        <img src="Images/carousel0.png" class="featured_property_image">
-                                        <span class="hot_offer">HOT OFFER</span>
-                                    </div>
-                                    <div class="featured_property_info">
-                                        <div id="featured_name">Puravankara</div>
-                                        <div id="featured_price">&#8377; 28,235/Month</div>
-                                        <div id="featured_details">
-                                            <div class="featured_icons">
-                                                <div class="featured_icon_image"><img src="Images/Bed_featured.png" class="featured_icon"></div>
-                                                <div class="featured_icon_title"> Beds</div>
-                                            </div>
-                                            <div class="featured_value">3</div>
-                                        </div>
-                                        <div id="featured_details">
-                                            <div class="featured_icons">
-                                                <div class="featured_icon_image"><img src="Images/bath_featured.png" class="featured_icon"></div>
-                                                <div class="featured_icon_title" id="featured_bath_title"> Bathrooms</div>
-                                            </div>
-                                            <div class="featured_value">3</div>
-                                        </div>
-                                        <div id="featured_details">
-                                            <div class="featured_icons">
-                                                <div class="featured_icon_image"><img src="Images/map_featured.png" class="featured_icon"></div>
-                                                <div class="featured_icon_title" id="featured_map_title"> Marinedrive, Kochi</div>
-                                            </div>
-                                            <div class="featured_value">
-                                                <img src="Images/favorites_featured.png" id="fav_icon">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="featured_properties">
-                                    <div id="featured_property_image_holder">
-                                        <img src="Images/carousel0.png" class="featured_property_image">
-                                        <span class="hot_offer">HOT OFFER</span>
-                                    </div>
-                                    <div class="featured_property_info">
-                                        <div id="featured_name">Puravankara</div>
-                                        <div id="featured_price">&#8377; 28,235/Month</div>
-                                        <div id="featured_details">
-                                            <div class="featured_icons">
-                                                <div class="featured_icon_image"><img src="Images/Bed_featured.png" class="featured_icon"></div>
-                                                <div class="featured_icon_title"> Beds</div>
-                                            </div>
-                                            <div class="featured_value">3</div>
-                                        </div>
-                                        <div id="featured_details">
-                                            <div class="featured_icons">
-                                                <div class="featured_icon_image"><img src="Images/bath_featured.png" class="featured_icon"></div>
-                                                <div class="featured_icon_title" id="featured_bath_title"> Bathrooms</div>
-                                            </div>
-                                            <div class="featured_value">3</div>
-                                        </div>
-                                        <div id="featured_details">
-                                            <div class="featured_icons">
-                                                <div class="featured_icon_image"><img src="Images/map_featured.png" class="featured_icon"></div>
-                                                <div class="featured_icon_title" id="featured_map_title"> Marinedrive, Kochi</div>
-                                            </div>
-                                            <div class="featured_value">
-                                                <img src="Images/favorites_featured.png" id="fav_icon">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                 <div class="featured_properties">
-                                    <div id="featured_property_image_holder">
-                                        <img src="Images/carousel0.png" class="featured_property_image">
-                                        <span class="hot_offer">HOT OFFER</span>
-                                    </div>
-                                    <div class="featured_property_info">
-                                        <div id="featured_name">Puravankara</div>
-                                        <div id="featured_price">&#8377; 28,235/Month</div>
-                                        <div id="featured_details">
-                                            <div class="featured_icons">
-                                                <div class="featured_icon_image"><img src="Images/Bed_featured.png" class="featured_icon"></div>
-                                                <div class="featured_icon_title"> Beds</div>
-                                            </div>
-                                            <div class="featured_value">3</div>
-                                        </div>
-                                        <div id="featured_details">
-                                            <div class="featured_icons">
-                                                <div class="featured_icon_image"><img src="Images/bath_featured.png" class="featured_icon"></div>
-                                                <div class="featured_icon_title" id="featured_bath_title"> Bathrooms</div>
-                                            </div>
-                                            <div class="featured_value">3</div>
-                                        </div>
-                                        <div id="featured_details">
-                                            <div class="featured_icons">
-                                                <div class="featured_icon_image"><img src="Images/map_featured.png" class="featured_icon"></div>
-                                                <div class="featured_icon_title" id="featured_map_title"> Marinedrive, Kochi</div>
-                                            </div>
-                                            <div class="featured_value">
-                                                <img src="Images/favorites_featured.png" id="fav_icon">
-                                            </div>
-                                        </div>
-                                        <span class="featured_sale_type">On Rent</span>
-                                    </div>
-                                </div>
-                                 <div class="featured_properties">
-                                    <div id="featured_property_image_holder">
-                                        <img src="Images/carousel0.png" class="featured_property_image">
-                                        <span class="hot_offer">HOT OFFER</span>
-                                    </div>
-                                    <div class="featured_property_info">
-                                        <div id="featured_name">Puravankara</div>
-                                        <div id="featured_price">&#8377; 28,235/Month</div>
-                                        <div id="featured_details">
-                                            <div class="featured_icons">
-                                                <div class="featured_icon_image"><img src="Images/Bed_featured.png" class="featured_icon"></div>
-                                                <div class="featured_icon_title"> Beds</div>
-                                            </div>
-                                            <div class="featured_value">3</div>
-                                        </div>
-                                        <div id="featured_details">
-                                            <div class="featured_icons">
-                                                <div class="featured_icon_image"><img src="Images/bath_featured.png" class="featured_icon"></div>
-                                                <div class="featured_icon_title" id="featured_bath_title"> Bathrooms</div>
-                                            </div>
-                                            <div class="featured_value">3</div>
-                                        </div>
-                                        <div id="featured_details">
-                                            <div class="featured_icons">
-                                                <div class="featured_icon_image"><img src="Images/map_featured.png" class="featured_icon"></div>
-                                                <div class="featured_icon_title" id="featured_map_title"> Marinedrive, Kochi</div>
-                                            </div>
-                                            <div class="featured_value">
-                                                <img src="Images/favorites_featured.png" id="fav_icon">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-             -->               </div>
-                        </div>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/controllers/maincontrol.js"></script>
+    <script type="text/javascript" src="js/controllers/home.js"></script>
+    <script type="text/javascript" src="js/controllers/addproperty.js"></script>
+    <script type="text/javascript" src="js/controllers/contact.js"></script>
+    <script type="text/javascript" src="lib/ng-file-upload/dist/ng-file-upload.min.js"></script>
+    <script type="text/javascript" src="lib/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+    <script>
+        /*$(document).ready (function(){
+                         $("#login-success").hide();
+                         $("#add-property-success").hide();
+                        /*$("#login-success").alert();
+                        $("#login-success").fadeTo(2000, 500).slideUp(500, function(){
+                       $("#login-success").slideUp(500);*/
+        /*
+                        });   
+               function showLoginSuccessAlert(){
+                    $("#login-success").alert();
+                    $("#login-success").fadeTo(2000, 500).slideUp(500, function(){
+                    $("#login-success").slideUp(500);
+                        });
+                }
                 
-                <!-- Recent Properties -------->
-                        <div id="recent-properties">
-                           <div class="recent-title">
-                                <span id="title-featured">Recent</span><span id="title-properties"> Properties</span>
-                           </div>
-                           <div id="recent_tabs"> 
-                                <ul class="recent_menu">
-                                    <li><a ui-sref="recent_commercial" ui-sref-active="activeRecentOption">COMMERCIAL</a></li>
-                                    <li><a ui-sref="recent_furnished" ui-sref-active="activeRecentOption">FURNISHED HOMES</a></li>
-                                    <li><a ui-sref="recent_land_and_plot" ui-sref-active="activeRecentOption">LAND & PLOT</a></li>
-                                    <li><a ui-sref="recent_rental" ui-sref-active="activeRecentOption">RENTAL</a></li>
-                                </ul>
-                           </div>
-                            <div ui-view="recent_ui_view">
-                            </div>
-                        </div>
-                <!-- Add Property ------------->
-                        <div id="add-property" ng-controller="addPropertyCtrl" ng-init="initFirst()">
-                            <form name="upload_form">
-                                 <div class="featured-title">
-                                    <span id="title-featured">ADD</span><span id="title-properties"> PROPERTY</span>
-                                 </div>
-                                <div id="add_property_tabs"> 
-                                    <ul class="add_property_menu">
-                                        <li><a ui-sref="add_basic_info" ui-sref-active="activeAddPropertyOption" id="basic_info_tab">BASIC INFORMATION</a></li>
-                                        <li><a ui-sref="add_details" ui-sref-active="activeAddPropertyOption">PROPERTY DETAILS</a></li>
-                                    </ul>
-                                </div>
-                           <div ui-view="add_property_ui_view"></div>
-                           </form>
-                            
-                        </div>
-                <!-- Contact Us ------------->       
-                        <div id="contact-us" ng-controller="contactCtrl">
-                             <span id="title-contact">Contact</span>
-                             <span id="title-us">Us</span>
-                            <div id="contact-location">
-                                <img src="Images/Location_Aboutus.png" id="contact-loc-icon">
-                                <span id="contact-loc-title">Our Location</span>
-                            </div>
-                            <div id="contact-map">
-                                <div id="google_maps_top">
-                                    <ng-map center="[10.01478,76.363654]">
-                                    <marker position="{{10.01478}},{{76.363654}}" title="Real Buy"></marker>
-                                    </ng-map>
-                                </div>
-                            </div>
-                            <div id="contact-address">
-                                <img src="Images/Address_Desktop.png">
-                                <span id="contact-address-title">Address</span>
-                            </div>
-                            <div id="contact-address-details">
-                                <div id="contact-address-info">
-                                    9A, 9th floor, <br> Carnival Infopark, Kakkanad, <br> Kochi - 682 030
-                                </div>
-                                <div id="contact-phone-details">
-                                    Phone : 0484-2415010 <br>
-                                    Email : support@realbuy.com
-                                </div>
-                                <div id="contact-work-timing">
-                                    Opening Hours: Monday - Friday : 9 am To 6 pm <br>
-                                    Saturday - Sunday : 9 am To 2 pm
-                                </div>
-                            </div>
-                            <div id="contact-agent">
-                                <img src="Images/mail.png" id="contact-mail">
-                                <span id="contact-agent-title">Contact our agent</span>
-                            </div>
-                            <form>
-                                <div id="contact-input">
-                                    <div id="contact-inputs-left">
-                                        <input type="text" id="cname" class="contact-input-boxes" placeholder="Name" ng-model='name'>
-                                        <input type="text" id="cemail" class="contact-input-boxes" placeholder="Email" ng-model='email'>
-                                        <input type="text" id="cphone" class="contact-input-boxes" placeholder="Phone number" ng-model='phone'>
-                                    </div>
-                                    <div id="contact-message">
-                                        <textarea rows="5" cols="50" id="cmessage" placeholder="Message" ng-model='message'></textarea>
-                                        <span class="error_message">{{error}}</span>
-                                    </div>
-                                    <div id="contact-submit" ng-click='validateInput()'>
-                                        <button type="submit" id="contact-submit-button">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <script type="text/javascript" src="js/app.js"></script>
-        <script type="text/javascript" src="js/controllers/maincontrol.js"></script>
-        <script type="text/javascript" src="js/controllers/home.js"></script>
-        <script type="text/javascript" src="js/controllers/addproperty.js"></script>
-        <script type="text/javascript" src="js/controllers/contact.js"></script>
-        <script type="text/javascript" src="lib/ng-file-upload/dist/ng-file-upload.min.js"></script>
-	    <script type="text/javascript" src="lib/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
-        </body>
+                function showAddPropertySuccessAlert(){
+                    $("#add-property-success").alert();
+                    $("#add-property-success").fadeTo(2000, 500).slideUp(500, function(){
+                    $("#add-property-success").slideUp(500);
+                        });
+                    window.location.href="#home";
+                }*/
+    </script>
+</body>
+
 </html>
