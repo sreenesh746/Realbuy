@@ -123,12 +123,14 @@ app.controller('addPropertyCtrl', ['$scope', '$rootScope', '$localStorage', '$wi
         }).then(function(response) {
             if (response.status == 200) {
                 $scope.initFirst();
-                //showAddPropertySuccessAlert();
+                
                 $rootScope.$emit("refreshProperties", {});
+                showAddPropertySuccessAlert();
+                $scope.addPropertyTab = 1;
             }
         }, function(response) {
             if (response.status == 401) {
-                $window.alert('Login to Add property');
+                showAddPropertyFailureAlert();
             }
         });
     };

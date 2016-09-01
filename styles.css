@@ -1866,6 +1866,15 @@ input[type="radio"]:checked + label span
 }
 
 
+#add-property-failure
+{
+    position: absolute;
+    z-index: 4;
+    top:100px;
+    left: 25%;
+    width: 25%;
+    
+}
 
 
 /* For Search Page */

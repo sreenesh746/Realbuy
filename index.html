@@ -17,43 +17,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
-<script>
-    /* function myFunction(){
-                console.log("load");
-               //
-            */
-
-    /* $("#content").scrollspy({target: ".navbar"});
-    $(".navbar").on("activate.bs.scrollspy", function(){
-        var x = $(".nav li.active > a").text();
-        if(x=="RECENT PROPERTIES"){
-            document.getElementById("com").click();
-        }
-    });
-    // Add smooth scrolling on all links inside the navbar
-  $(".navbar a").on('click', function(event) {
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-      // Prevent default anchor click behavior
-      event.preventDefault();
-
-      // Store hash
-      var hash = this.hash;
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, #content').animate({
-        scrollTop: $(hash).offset().top
-      }, 800, function(){
-   
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        //window.location.hash = hash;
-      });
-    }  // End if
-  });*/
-</script>
 
 <body ng-controller="mainCtrl">
+  
+    
     <form name="loginForm" ng-submit="loginForm.$valid&&validateLoginForm()" novalidate>
         <login title="LOGIN" id="login" visible="showLogin">
 
@@ -76,7 +43,7 @@
                 <img src="Images/g+.png">
             </div>
             <div id="register_link">
-                Don’t have an account? <a ng-click="toggleSignUp()" id="reg_link">Create Account</a>
+                Don't have an account? <a ng-click="toggleSignUp()" id="reg_link">Create Account</a>
             </div>
         </login>
     </form>
@@ -110,13 +77,25 @@
                 <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" compare-to="user.password" placeholder="Confirm Password" ng-model="user.confirmPassword" required/>
             </div>
             <div class="form-group">
-                <label for="profile_photo"><img src="../../Images/photo-camera.png" id="camera_icon">
+                <label for="profile_photo"><img src="./Images/photo-camera.png" id="camera_icon">
                             <div>Avatar</div></label><span class="error_message" ng-show="(signUpForm.$submitted||signUpForm.avatar.$dirty)&&signUpForm.avatar.$invalid">Invalid file [Accepted formats: JPEG/PNG Max: 2MB]</span><span class="error_message" ng-show="signUpServerError">{{signUpServerError}}</span>
                 <input type="file" id="profile_photo" name="avatar" ngf-select ng-model="user.avatar" ngf-change="onFileSelect($files)" name="file" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
             </div>
             <button type="submit" class="signup_submit">Submit</button>
         </signup>
     </form>
+    <div class="alert alert-success" id="login-success" class="success-notify">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success! </strong> You have successfully logged In.
+    </div>
+    <div class="alert alert-success" id="add-property-success" class="success-notify">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success! </strong> You have successfully added a property.
+    </div>
+    <div class="alert alert-danger" id="add-property-failure" class="success-notify">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Unauthorized! </strong> Login to add property.
+    </div>
     <div ui-view></div>
 
     <script type="text/javascript" src="js/app.js"></script>
@@ -127,28 +106,34 @@
     <script type="text/javascript" src="lib/ng-file-upload/dist/ng-file-upload.min.js"></script>
     <script type="text/javascript" src="lib/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
     <script>
-        /*$(document).ready (function(){
-                         $("#login-success").hide();
-                         $("#add-property-success").hide();
-                        /*$("#login-success").alert();
-                        $("#login-success").fadeTo(2000, 500).slideUp(500, function(){
-                       $("#login-success").slideUp(500);*/
-        /*
-                        });   
-               function showLoginSuccessAlert(){
-                    $("#login-success").alert();
-                    $("#login-success").fadeTo(2000, 500).slideUp(500, function(){
-                    $("#login-success").slideUp(500);
-                        });
-                }
-                
-                function showAddPropertySuccessAlert(){
-                    $("#add-property-success").alert();
-                    $("#add-property-success").fadeTo(2000, 500).slideUp(500, function(){
-                    $("#add-property-success").slideUp(500);
-                        });
-                    window.location.href="#home";
-                }*/
+        $(document).ready(function() {
+            $("#login-success").hide();
+            $("#add-property-success").hide();
+            $("#add-property-failure").hide();
+
+        });
+
+        function showLoginSuccessAlert() {
+            $("#login-success").alert();
+            $("#login-success").fadeTo(2000, 500).slideUp(500, function() {
+                $("#login-success").slideUp(500);
+            });
+        }
+
+        function showAddPropertySuccessAlert() {
+            $("#add-property-success").alert();
+            $("#add-property-success").fadeTo(2000, 500).slideUp(500, function() {
+                $("#add-property-success").slideUp(500);
+            });
+            window.location.href = "#home";
+        }
+
+        function showAddPropertyFailureAlert() {
+            $("#add-property-failure").alert();
+            $("#add-property-failure").fadeTo(2000, 500).slideUp(500, function() {
+                $("#add-property-failure").slideUp(500);
+            });
+        }
     </script>
 </body>
 

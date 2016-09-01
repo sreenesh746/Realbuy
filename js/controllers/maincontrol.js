@@ -1,4 +1,4 @@
-app.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$stateParams', '$location', '$window', '$log', '$http', '$localStorage', 'Upload', function($scope, $rootScope, $state, $stateParams, $location, $window, $log, $http, $localStorage, Upload) {
+app.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$stateParams', '$location', '$window', '$log', '$http', '$localStorage', 'Upload','NgMap', function($scope, $rootScope, $state, $stateParams, $location, $window, $log, $http, $localStorage, Upload,NgMap) {
     $rootScope.$on("refreshProperties", function() {
         $scope.fetchAll();
     });
@@ -123,6 +123,7 @@ app.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$stateParams', '$
     }
     $scope.showLogin = false;
     $scope.toggleLogin = function() {
+        $scope.loginServerError = '';
         console.log($localStorage.JWT);
         $scope.user = {};
         $scope.loginForm.$setPristine();
@@ -161,8 +162,6 @@ app.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$stateParams', '$
                 $scope.signUpForm.$setUntouched();
                 $scope.signUpServerError = undefined;
                 $scope.toggleSignUp();
-                $window.alert('Registration Successful');
-
             }
         }, function(response) {
             console.log(response);
@@ -178,13 +177,6 @@ app.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$stateParams', '$
 
 
     $scope.validateLoginForm = function() {
-        /*if($scope.loginForm.$valid){
-            
-        }
-        else {
-        //if form is not valid set $scope.addContact.submitted to true     
-            $scope.loginForm.submitted=true;
-        }*/
         $scope.loginServerError = '';
         console.log($scope.user);
         $scope.login();
@@ -212,7 +204,7 @@ app.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$stateParams', '$
                 console.log('logged In');
                 console.log($localStorage.JWT);
                 $scope.fetchAll();
-                //showLoginSuccessAlert();
+                showLoginSuccessAlert();
             }
         }, function(res) {
             $scope.loginServerError = res.data.message;
@@ -299,47 +291,6 @@ app.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$stateParams', '$
     };
     $scope.filter={};
     
-    /*$scope.filterProperties=function(){
-      $scope.filteredProperties = $scope.Properties.searchProperties;
-      if($scope.filter.status){
-          console.log($scope.filter.status);
-          angular.forEach($scope.filteredProperties,function(property,key){
-              if(property.availability!=$scope.filter.status){
-                  console.log('yes');
-                  delete property;
-              }
-          });
-      }
-      if($scope.filter.areaRange){
-          console.log($scope.filter.areaRange);
-          angular.forEach($scope.filteredProperties,function(property,key){
-              switch($scope.filter.areaRange){
-                  case '< 1000 SQFT': 
-                      if(property.builtUpArea >= 1000){
-                          delete property;
-                      }
-                      break;
-                  case '1000 - 5000 SQFT':
-                      if(property.builtUpArea < 1000 || property.builtUpArea >5000){
-                          delete property;
-                      }
-                      break;
-                  case '5000-10000 SQFT':
-                      if(property.builtUpArea < 5000 || property.builtUpArea >10000){
-                          delete property;
-                      }
-                      break;
-                  case '> 10000 SQFT': 
-                      if(property.builtUpArea < 10000){
-                          delete property;
-                      }
-                      break;
-              }
-          });
-    }
-        console.log($scope.filteredProperties);
-    };*/
-    
     $scope.filterProperties=function(){
       $scope.filteredProperties = angular.copy($scope.Properties.searchProperties);
       console.log($scope.Properties.searchProperties);
@@ -413,7 +364,6 @@ app.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$stateParams', '$
     };
 
 
-
 }]);
 app.directive('login', function() {
     return {
@@ -456,6 +406,7 @@ app.directive('login', function() {
         }
     };
 });
+
 
 app.directive('signup', function() {
     return {

@@ -1,5 +1,5 @@
 <div id="wrapper" ng-controller="mainCtrl">
-    <img src="../Images/logo_small.png" id="logo_small">
+    <img src="./Images/logo_small.png" id="logo_small">
     <div id="search_main_menu">
         <div id="navmenu">
             <nav id="menu" class="navbar navbar-inverse">
@@ -34,8 +34,8 @@
             <select id="filter-area" ng-model="filter.areaRange" ng-options="area for area in area_ranges"><option value="" disabled selected>AREA SQUARE FEET</option></select>
             <button id="search_search" ng-click="filterProperties()">SEARCH</button>
             <div id="search_pagination_arrows">
-                <img src="../Images/Prev_Arrow_Featured.png" id="search_prev" ng-hide="currentPage == 0" ng-click="currentPage=currentPage-1">
-                <img src="../Images/Next_Arrow_Featured.png" id="search_next" ng-hide="currentPage >= filteredProperties.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                <img src="./Images/Prev_Arrow_Featured.png" id="search_prev" ng-hide="currentPage == 0" ng-click="currentPage=currentPage-1">
+                <img src="./Images/Next_Arrow_Featured.png" id="search_next" ng-hide="currentPage >= filteredProperties.length/pageSize - 1" ng-click="currentPage=currentPage+1">
             </div>
         </div>
         <div class="search_tiles" ng-repeat="property in filteredProperties | startFrom:currentPage*pageSize | limitTo:pageSize">
@@ -74,142 +74,26 @@
                 </div>
             </div>
             <div class="search_tile_footer">
-                <img src="../Images/Mail_white.png" id="search_mail"><span class="search_tiles_footer_labels"> SEND MAIL</span>
-                <img src="../Images/Call_white.png" id="search_phone"><span class="search_tiles_footer_labels"> PHONE NUMBER</span>
-                <img src="../Images/Fav_white.png" id="search_star" ng-hide="property.favourite">
+                <img src="./Images/Mail_white.png" id="search_mail"><span class="search_tiles_footer_labels"> SEND MAIL</span>
+                <img src="./Images/Call_white.png" id="search_phone"><span class="search_tiles_footer_labels"> PHONE NUMBER</span>
+                <img src="./Images/Fav_white.png" id="search_star" ng-hide="property.favourite">
                 <img src="Images/Fav_select.png" id="search_star" ng-show="property.favourite" ng-click="loggedIn&&toggleFavourite(property)"><span class="search_tiles_footer_labels"> SHORTLIST</span>
-                <img src="../Images/Location_white.png" id="search_map_icon"><span class="search_tiles_footer_labels"> MAP</span>
-                <img src="../Images/sharing_white.png" id="search_share_icon"><span class="search_tiles_footer_labels"> SHARE</span>
+                <img src="./Images/Location_white.png" id="search_map_icon"><span class="search_tiles_footer_labels"> MAP</span>
+                <img src="./Images/sharing_white.png" id="search_share_icon"><span class="search_tiles_footer_labels"> SHARE</span>
             </div>
         </div>
-        <!--
-        <div class="search_tiles">
-            <div class="search_tile_content">
-                <img src="../Images/carousel0.png" class="search_tile_img">
-                <div class="search_tile_body">
-                    <div>
-                        <span id="search_indian_rupee">&#8377; </span>
-                        <span id="search_rupee"> 28,235/Month</span>
-                    </div>
-                    <div class="search_tile_titles">
-                        <span id="search_type_loc">TYPE & LOCATION: </span>
-                        <span id="search_type_loc_val"> Residential/Kakkanad</span>
-                    </div>
-                    <div class="search_tile_titles">
-                        <span id="search_type_loc">PLOT AREA: </span>
-                        <span id="search_type_loc_val"> 80 Cents</span>
-                    </div>
-                    <div class="search_tile_titles">
-                        <span id="search_type_loc">SOCIETY: </span>
-                        <span id="search_type_loc_val"> Green Casa</span>
-                    </div>
-                    <div class="search_tile_titles">
-                        <span id="search_type_loc">DESCRIPTION: </span>
-                        <span id="search_desc"> New Booking/ Ready to move/ Immediate / Facing Road</span>
-                    </div>
-                    <div class="search_tile_titles">
-                        <span id="search_type_loc">POSTED: </span>
-                        <span id="search_desc"> May 20, 2016</span>
-                    </div>
-                </div>
+        <div id="search_footer">
+            <div id="fb">
+                <img src="./Images/fb.png">
             </div>
-            <div class="search_tile_footer">
-                <img src="../Images/Mail_white.png" id="search_mail"><span class="search_tiles_footer_labels"> SEND MAIL</span>
-                <img src="../Images/Call_white.png" id="search_phone"><span class="search_tiles_footer_labels"> PHONE NUMBER</span>
-                <img src="../Images/Fav_white.png" id="search_star"><span class="search_tiles_footer_labels"> SHORTLIST</span>
-                <img src="../Images/Location_white.png" id="search_map_icon"><span class="search_tiles_footer_labels"> MAP</span>
-                <img src="../Images/sharing_white.png" id="search_share_icon"><span class="search_tiles_footer_labels"> SHARE</span>
+            <div id="tw">
+                <img src="./Images/twitter.png">
             </div>
-        </div>
-        <div class="search_tiles">
-            <div class="search_tile_content">
-                <img src="../Images/carousel0.png" class="search_tile_img">
-                <div class="search_tile_body">
-                    <div>
-                        <span id="search_indian_rupee">&#8377; </span>
-                        <span id="search_rupee"> 28,235/Month</span>
-                    </div>
-                    <div class="search_tile_titles">
-                        <span id="search_type_loc">TYPE & LOCATION: </span>
-                        <span id="search_type_loc_val"> Residential/Kakkanad</span>
-                    </div>
-                    <div class="search_tile_titles">
-                        <span id="search_type_loc">PLOT AREA: </span>
-                        <span id="search_type_loc_val"> 80 Cents</span>
-                    </div>
-                    <div class="search_tile_titles">
-                        <span id="search_type_loc">SOCIETY: </span>
-                        <span id="search_type_loc_val"> Green Casa</span>
-                    </div>
-                    <div class="search_tile_titles">
-                        <span id="search_type_loc">DESCRIPTION: </span>
-                        <span id="search_desc"> New Booking/ Ready to move/ Immediate / Facing Road</span>
-                    </div>
-                    <div class="search_tile_titles">
-                        <span id="search_type_loc">POSTED: </span>
-                        <span id="search_desc"> May 20, 2016</span>
-                    </div>
-                </div>
+            <div id="gp">
+                <img src="./Images/g+.png">
             </div>
-            <div class="search_tile_footer">
-                <img src="../Images/Mail_white.png" id="search_mail"><span class="search_tiles_footer_labels"> SEND MAIL</span>
-                <img src="../Images/Call_white.png" id="search_phone"><span class="search_tiles_footer_labels"> PHONE NUMBER</span>
-                <img src="../Images/Fav_white.png" id="search_star"><span class="search_tiles_footer_labels"> SHORTLIST</span>
-                <img src="../Images/Location_white.png" id="search_map_icon"><span class="search_tiles_footer_labels"> MAP</span>
-                <img src="../Images/sharing_white.png" id="search_share_icon"><span class="search_tiles_footer_labels"> SHARE</span>
+            <div id="copyright">
+                &copy; 2016. realbuy.com. All rights reserved.
             </div>
-        </div>
-        <div class="search_tiles">
-            <div class="search_tile_content">
-                <img src="../Images/carousel0.png" class="search_tile_img">
-                <div class="search_tile_body">
-                    <div>
-                        <span id="search_indian_rupee">&#8377; </span>
-                        <span id="search_rupee"> 28,235/Month</span>
-                    </div>
-                    <div class="search_tile_titles">
-                        <span id="search_type_loc">TYPE & LOCATION: </span>
-                        <span id="search_type_loc_val"> Residential/Kakkanad</span>
-                    </div>
-                    <div class="search_tile_titles">
-                        <span id="search_type_loc">PLOT AREA: </span>
-                        <span id="search_type_loc_val"> 80 Cents</span>
-                    </div>
-                    <div class="search_tile_titles">
-                        <span id="search_type_loc">SOCIETY: </span>
-                        <span id="search_type_loc_val"> Green Casa</span>
-                    </div>
-                    <div class="search_tile_titles">
-                        <span id="search_type_loc">DESCRIPTION: </span>
-                        <span id="search_desc"> New Booking/ Ready to move/ Immediate / Facing Road</span>
-                    </div>
-                    <div class="search_tile_titles">
-                        <span id="search_type_loc">POSTED: </span>
-                        <span id="search_desc"> May 20, 2016</span>
-                    </div>
-                </div>
-            </div>
-            <div class="search_tile_footer">
-                <img src="../Images/Mail_white.png" id="search_mail"><span class="search_tiles_footer_labels"> SEND MAIL</span>
-                <img src="../Images/Call_white.png" id="search_phone"><span class="search_tiles_footer_labels"> PHONE NUMBER</span>
-                <img src="../Images/Fav_white.png" id="search_star"><span class="search_tiles_footer_labels"> SHORTLIST</span>
-                <img src="../Images/Location_white.png" id="search_map_icon"><span class="search_tiles_footer_labels"> MAP</span>
-                <img src="../Images/sharing_white.png" id="search_share_icon"><span class="search_tiles_footer_labels"> SHARE</span>
-            </div>
-        </div>
-    </div>-->
-    <div id="search_footer">
-        <div id="fb">
-            <img src="../Images/fb.png">
-        </div>
-        <div id="tw">
-            <img src="../Images/twitter.png">
-        </div>
-        <div id="gp">
-            <img src="../Images/g+.png">
-        </div>
-        <div id="copyright">
-            &copy; 2016. realbuy.com. All rights reserved.
         </div>
     </div>
-</div>

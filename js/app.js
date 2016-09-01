@@ -12,21 +12,3 @@ app.config(function($stateProvider, $urlRouterProvider) {
         templateUrl: 'partials/search.html'
     })
 });
-
-/*
-app.factory('searchProperty',function($rootScope){
-    var searchedProperty = {};
-    searchedProperty.properties = undefined;
-
-    searchedProperty.prepForBroadcast = function(propertyList) {
-        this.properties = propertyList;
-        this.broadcastItem();
-    };
-
-    searchedProperty.broadcastItem = function() {
-        $rootScope.$broadcast('handleSearch');
-    };
-
-    return searchedProperty;
-    
-});*/
