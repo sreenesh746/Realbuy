@@ -110,10 +110,10 @@
                         <span id="title-featured">Featured</span><span id="title-properties"> Properties</span>
                         <div id="pagination">
                             <button class="page_arrows">
-                                        <img src="Images/Prev_Arrow_Featured.png" ng-hide="featuredActivePage==0" ng-click="prevPage()">
+                                        <img src="Images/Prev_Arrow_Featured.png" ng-disabled="featuredActivePage==0" ng-click="featuredActivePage!=0&&prevPage()">
                                     </button>
                             <button class="page_arrows">
-                                        <img src="Images/Next_Arrow_Featured.png" ng-hide="endFeaturedPage" ng-click="nextPage()">
+                                        <img src="Images/Next_Arrow_Featured.png" ng-disabled="endFeaturedPage" ng-click="!endFeaturedPage&&nextPage()">
                                     </button>
                         </div>
                     </div>
